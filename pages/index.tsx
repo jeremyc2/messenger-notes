@@ -9,7 +9,9 @@ const Home: NextPage = () => {
         <meta name="description" content="" />
         <link rel="icon" href="" />
       </Head>
-
+      <div>
+        
+      </div>
     </div>
   )
 }
