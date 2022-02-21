@@ -19,10 +19,14 @@ export default function MessageInput({ messages, setMessages }: Props) {
     }, [mainInput])
 
     function sendMessage() {
-        const message: string | undefined = mainInput.current?.innerText
+        if(!mainInput.current) return
+
+        const message: string = mainInput.current.innerText
 
         if(message && message.length > 0) {
             setMessages([...messages, message])
+            mainInput.current.innerHTML = ''
+            mainInput.current.focus()
         }
     }
 
