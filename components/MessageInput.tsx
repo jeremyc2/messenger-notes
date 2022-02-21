@@ -1,13 +1,19 @@
 import styles from '../styles/message-input.module.scss'
 import React, { useEffect, useRef } from 'react'
 
+interface Props {
+    onSend: Function
+}
+
 function handleInput(e: React.FormEvent<HTMLElement>) {
     var isEmpty: boolean = e.currentTarget.innerText.length === 0
 
     e.currentTarget.classList.toggle(styles.placeholder, isEmpty)
 }
 
-export default function MessageInput() {
+export default function MessageInput({ onSend }: Props) {
+    onSend('messages')
+
     const mainInput = useRef<HTMLDivElement>(null)
     useEffect(() => {
         mainInput.current?.focus()

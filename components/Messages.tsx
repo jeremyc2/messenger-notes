@@ -1,11 +1,15 @@
 import styles from '../styles/messages.module.scss'
 
-export default function MessageInput() {
+interface Props {
+    messages: string[]
+}
+
+export default function MessageInput({ messages }: Props) {
     return (
         <div className={styles.messages}>
-            <div className={styles.message}>
-            Hello
-            </div>
+            {messages.map((message, index) => {
+                return <div key={`message-${index}`} className={styles.message}>{message}</div>
+            })}
         </div>
     )
 }

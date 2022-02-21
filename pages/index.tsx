@@ -3,7 +3,7 @@ import Messages from '../components/Messages'
 import MessageInput from '../components/MessageInput'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 function resizeApp() {
   let vh = window.innerHeight * 0.01
@@ -11,9 +11,12 @@ function resizeApp() {
 }
 
 const Home: NextPage = () => {
+  const [messages, setMessages] = useState<string[]>([])
+
   useEffect(() => {
     resizeApp()
     window.addEventListener('resize', resizeApp)
+
     return () => window.removeEventListener('resize', resizeApp)
   })
   
@@ -25,8 +28,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="" />
       </Head>
       <div className={styles.main}>
-        <Messages />
-        <MessageInput />
+        <Messages messages={messages}/>
+        <MessageInput onSend={(message:string) => setMessages([...messages, message])}/>
       </div>
     </div>
   )
