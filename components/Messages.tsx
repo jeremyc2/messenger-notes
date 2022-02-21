@@ -8,7 +8,7 @@ export default function MessageInput({ messages }: Props) {
     return (
         <div className={styles.messages}>
             {messages.map((message, index) => {
-                return <div key={`message-${index}`} className={styles.message}>{message}</div>
+                return <div key={`message-${index}`} className={styles.message} dangerouslySetInnerHTML={{ __html: message }}></div>
             })}
         </div>
     )
