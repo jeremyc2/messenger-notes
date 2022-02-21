@@ -20,34 +20,3 @@
         padding: var(--size-2) var(--size-3);
     }
 }
-
-.input-base {
-    display: flex;
-    padding: var(--size-3);
-    gap: var(--size-2);
-
-    .input {
-        flex-grow: 1;
-        background: var(--surface-4);
-        border-radius: var(--radius-4);
-        border: var(--border-size-2) solid var(--text-2);
-        padding: var(--size-2) var(--size-3);
-        
-        &::before {
-            content: 'Aa';
-            cursor: text;
-        }
-
-        &:focus {
-            outline: none;
-        }
-    }
-
-    button {
-        background: inherit;
-        svg {
-            fill: var(--red-7);
-            stroke: none;
-        }
-    }
-}
