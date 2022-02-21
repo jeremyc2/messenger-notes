@@ -26,6 +26,7 @@ export default function MessageInput({ messages, setMessages }: Props) {
         if(message && message.length > 0) {
             setMessages([...messages, message])
             mainInput.current.innerHTML = ''
+            mainInput.current.classList.add(styles.placeholder)
             mainInput.current.focus()
         }
     }
