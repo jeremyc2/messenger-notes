@@ -16,7 +16,6 @@ const Home: NextPage = () => {
   useEffect(() => {
     resizeApp()
     window.addEventListener('resize', resizeApp)
-
     return () => window.removeEventListener('resize', resizeApp)
   })
   
@@ -29,7 +28,7 @@ const Home: NextPage = () => {
       </Head>
       <div className={styles.main}>
         <Messages messages={messages}/>
-        <MessageInput onSend={(message:string) => setMessages([...messages, message])}/>
+        <MessageInput messages={messages} setMessages={setMessages}/>
       </div>
     </div>
   )

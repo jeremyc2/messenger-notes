@@ -1,4 +1,7 @@
 .messages {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-3);
     flex-grow: 1;
     padding: var(--size-3);
 
