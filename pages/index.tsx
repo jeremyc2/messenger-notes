@@ -1,17 +1,20 @@
 import styles from '../styles/messenger.module.scss'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react'
+
+function resizeApp() {
+  let vh = window.innerHeight * 0.01
+  document.documentElement.style.setProperty('--vh', `${vh}px`)
+}
 
 const Home: NextPage = () => {
   const mainInput = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-    let vh = window.innerHeight * 0.01;
-    // Then we set the value in the --vh custom property to the root of the document
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-
+    resizeApp()
+    window.addEventListener('resize', resizeApp)
     mainInput.current?.focus()
+    return () => window.removeEventListener('resize', resizeApp)
   }, [mainInput])
   
   return (
