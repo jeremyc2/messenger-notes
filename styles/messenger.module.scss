@@ -31,6 +31,10 @@
         border-radius: var(--radius-4);
         border: var(--border-size-2) solid var(--text-2);
         padding: 0px var(--size-3);
+
+        &:focus {
+            outline: none;
+        }
     }
 
     button {
