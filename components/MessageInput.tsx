@@ -21,7 +21,7 @@ export default function MessageInput({ messages, setMessages }: Props) {
     function sendMessage() {
         if(!mainInput.current) return
 
-        const message: string = mainInput.current.innerText
+        const message: string = mainInput.current.innerHTML
 
         if(message && message.length > 0) {
             setMessages([...messages, message])
