@@ -1,0 +1,11 @@
+.messages {
+    flex-grow: 1;
+    padding: var(--size-3);
+
+    .message {
+        color: var(--gray-4);
+        background: var(--red-7);
+        border-radius: var(--radius-4);
+        padding: var(--size-2) var(--size-3);
+    }
+}

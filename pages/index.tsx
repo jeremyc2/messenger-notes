@@ -1,4 +1,5 @@
 import styles from '../styles/messenger.module.scss'
+import Messages from '../components/Messages'
 import MessageInput from '../components/MessageInput'
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -24,11 +25,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="" />
       </Head>
       <div className={styles.main}>
-        <div className={styles.messages}>
-          <div className={styles.message}>
-            Hello
-          </div>
-        </div>
+        <Messages />
         <MessageInput />
       </div>
     </div>
