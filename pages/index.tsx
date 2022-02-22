@@ -25,7 +25,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Messenger Notes</title>
         <meta name="description" content="" />
-        <link rel="icon" href="" />
+        <link rel="icon" href="icon.svg" />
       </Head>
       <div className={styles.main}>
         <NavBar />

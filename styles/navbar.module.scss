@@ -1,5 +1,8 @@
 .navbar {
+    font-weight: 600;
     padding: var(--size-3);
-    color: white;
-    background-color: var(--primary-color);
+    color: var(--text-2);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px, 
+        rgba(0, 0, 0, 0.1) 0px -1px 0px 0px inset, 
+        rgba(255, 255, 255, 0.5) 0px 2px 1px -1px inset;
 }
