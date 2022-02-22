@@ -6,6 +6,12 @@ interface Props {
     setMessages: Function
 }
 
+interface ChromeNavigator extends Navigator {
+    virtualKeyboard: {
+        show: Function
+    }
+}
+
 function handleInput(e: React.FormEvent<HTMLElement>) {
     var isEmpty: boolean = e.currentTarget.innerText.length === 0
 
@@ -19,8 +25,8 @@ export default function MessageInput({ messages, setMessages }: Props) {
     }, [mainInput])
 
     function focus() {
-        mainInput.current?.focus()
-        (navigator as any).virtualKeyboard?.show()
+        mainInput.current?.focus();
+        (navigator as ChromeNavigator).virtualKeyboard?.show()
     }
 
     function sendMessage() {
