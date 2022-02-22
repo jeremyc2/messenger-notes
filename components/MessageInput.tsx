@@ -7,7 +7,7 @@ interface Props {
 }
 
 interface ChromeNavigator extends Navigator {
-    virtualKeyboard: {
+    virtualKeyboard?: {
         show: Function
     }
 }
