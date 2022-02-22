@@ -20,7 +20,7 @@ export default function MessageInput({ messages, setMessages }: Props) {
 
     function focus() {
         mainInput.current?.focus()
-        navigator.virtualKeyboard?.show()
+        (navigator as any).virtualKeyboard?.show()
     }
 
     function sendMessage() {
