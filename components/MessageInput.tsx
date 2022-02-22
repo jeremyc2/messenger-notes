@@ -15,8 +15,13 @@ function handleInput(e: React.FormEvent<HTMLElement>) {
 export default function MessageInput({ messages, setMessages }: Props) {
     const mainInput = useRef<HTMLDivElement>(null)
     useEffect(() => {
-        mainInput.current?.focus()
+        focus()
     }, [mainInput])
+
+    function focus() {
+        mainInput.current?.focus()
+        navigator.virtualKeyboard?.show()
+    }
 
     function sendMessage() {
         if(!mainInput.current) return
@@ -27,7 +32,7 @@ export default function MessageInput({ messages, setMessages }: Props) {
             setMessages([...messages, message])
             mainInput.current.innerHTML = ''
             mainInput.current.classList.add(styles.placeholder)
-            mainInput.current.focus()
+            focus()
         }
     }
 
