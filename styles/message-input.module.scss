@@ -4,19 +4,18 @@
     padding: var(--size-3);
     gap: var(--size-2);
 
-    :global(.DraftEditor-root) {
+    .input {
         flex-grow: 1;
         background: var(--surface-4);
         border-radius: var(--radius-4);
         border: var(--border-size-2) solid var(--text-2);
         padding: var(--size-2) var(--size-3);
         max-height: 15rem;
-        overflow-y: auto;
+        overflow-y: auto;  
     }
 
     :global(.public-DraftEditorPlaceholder-root) {
         color: var(--text-2);
-        width: unset;
     }
 
     button {
