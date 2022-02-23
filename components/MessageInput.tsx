@@ -1,6 +1,6 @@
 import styles from '../styles/message-input.module.scss'
 import 'draft-js/dist/Draft.css';
-import getResetEditorState from '../utils/draft-utils.js'
+import { getResetEditorState } from '../utils/draft-utils.js'
 import { convertFromRaw, Editor, EditorState } from 'draft-js'
 import { stateToHTML } from 'draft-js-export-html';
 import { useEffect, useRef, useState } from 'react'
