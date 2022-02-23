@@ -1,3 +1,5 @@
+import { EditorState, RichUtils, Modifier } from 'draft-js';
+
 // https://github.com/jpuri/draftjs-utils/blob/master/js/block.js
 const removeSelectedBlocksStyle = (editorState)  => {
     const newContentState = RichUtils.tryToRemoveBlockStyle(editorState);
