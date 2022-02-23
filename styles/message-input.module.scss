@@ -16,6 +16,7 @@
 
     :global(.public-DraftEditorPlaceholder-root) {
         color: var(--text-2);
+        width: unset;
     }
 
     button {
