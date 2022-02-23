@@ -1,6 +1,7 @@
 import styles from '../styles/message-input.module.scss'
 import 'draft-js/dist/Draft.css';
-import {convertFromRaw, convertToRaw, Editor, EditorState} from 'draft-js'
+import { convertFromRaw, Editor, EditorState } from 'draft-js'
+import { stateToHTML } from 'draft-js-export-html';
 import { useEffect, useRef, useState } from 'react'
 
 interface Props {
@@ -45,10 +46,9 @@ export default function MessageInput({ messages, setMessages }: Props) {
     }
 
     function sendMessage() {
-        const blocks = convertToRaw(editorState.getCurrentContent()).blocks,
-            value = blocks.map(block => (!block.text.trim() && '\n') || block.text).join('\n')
+        const html: string = stateToHTML(editorState.getCurrentContent())
 
-        setMessages([...messages, value])
+        setMessages([...messages, html])
         setEditorState(EditorState.createEmpty())
         
         focus()
