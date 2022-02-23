@@ -4,7 +4,7 @@
     padding: var(--size-3);
     gap: var(--size-2);
 
-    .input {
+    :global(.DraftEditor-root) {
         flex-grow: 1;
         background: var(--surface-4);
         border-radius: var(--radius-4);
@@ -12,15 +12,10 @@
         padding: var(--size-2) var(--size-3);
         max-height: 15rem;
         overflow-y: auto;
-        
-        &.placeholder::before {
-            content: 'Aa';
-            cursor: text;
-        }
+    }
 
-        &:focus {
-            outline: none;
-        }
+    :global(.public-DraftEditorPlaceholder-root) {
+        color: var(--text-2);
     }
 
     button {
