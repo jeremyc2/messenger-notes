@@ -51,8 +51,8 @@ export default function MessageInput({ messages, setMessages }: Props) {
 
         const html = stateToHTML(editorState.getCurrentContent())
         setMessages([...messages, html])
-        setEditorState(getResetEditorState(editorState))
-        focus()
+        // setEditorState(getResetEditorState(editorState))
+        // focus()
     }, [newMessageCount])
 
     function focus() {
