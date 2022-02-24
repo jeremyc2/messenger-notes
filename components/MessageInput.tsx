@@ -34,13 +34,26 @@ export default function MessageInput({ messages, setMessages }: Props) {
     const editor = useRef<Editor>(null),
         sendButton = useRef<HTMLButtonElement>(null)
 
+    const [newMessageCount, setNewMessageCount] = useState(
+        () => 0
+    )
+
     const [editorState, setEditorState] = useState(
         () => EditorState.createWithContent(emptyContentState)
     )
 
     useEffect(() => {
         focus()
-    }, [editor])
+    }, [])
+
+    useEffect(() => {
+        if(newMessageCount == 0) return
+
+        const html = stateToHTML(editorState.getCurrentContent())
+        setMessages([...messages, html])
+        setEditorState(getResetEditorState(editorState))
+        focus()
+    }, [newMessageCount])
 
     function focus() {
         editor.current?.focus();
@@ -48,19 +61,13 @@ export default function MessageInput({ messages, setMessages }: Props) {
     }
 
     function sendMessage() {
-        const html = sendButton.current?.getAttribute('data-messageHTML')
-
-        alert(html)
-
-        setMessages([...messages, html])
-        setEditorState(getResetEditorState(editorState))
-        focus()
+        setNewMessageCount(newMessageCount + 1)
     }
 
     return (
         <div className={styles['input-base']}>
             <div className={styles.input}>
-                <Editor ref={editor} placeholder='Aa' editorKey='editor' editorState={editorState} onChange={(state) => {setEditorState(state);sendButton.current?.setAttribute('data-messageHTML', stateToHTML(state.getCurrentContent()))}} spellCheck />
+                <Editor ref={editor} placeholder='Aa' editorKey='editor' editorState={editorState} onChange={setEditorState} spellCheck />
             </div>
             <button ref={sendButton} onClick={sendMessage}>
                 <svg width="30px" height="30px" viewBox="0 0 24 24">
