@@ -46,12 +46,30 @@ export default function MessageInput({ messages, setMessages }: Props) {
         (navigator as ChromeNavigator).virtualKeyboard?.show()
     }
 
-    function sendMessage() {
-        const html: string = stateToHTML(editorState.getCurrentContent())
+    function send() {
+        if(!editor.current?.editor) return
 
-        setMessages([...messages, html])
-        setEditorState(getResetEditorState(editorState))
-        focus()
+        editor.current.editor?.dispatchEvent(new Event('clear'))
+    }
+
+    function onSend(cb: Function) {
+        if(!editor.current?.editor) return
+
+        editor.current.editor?.addEventListener('clear', () => {
+            cb()
+        }, { once: true })
+    }
+
+    function sendMessage() {
+        onSend(() => {
+            const html: string = stateToHTML(editorState.getCurrentContent())
+
+            setMessages([...messages, html])
+            setEditorState(getResetEditorState(editorState))
+            focus()
+        })
+
+        send()
     }
 
     return (
