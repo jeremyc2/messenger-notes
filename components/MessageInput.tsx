@@ -47,13 +47,14 @@ export default function MessageInput({ messages, setMessages }: Props) {
     }, [])
 
     useEffect(() => {
+        console.log((editorState.toJS() as any).currentContent)
         if(newMessageCount == 0) return
 
         const html = stateToHTML(editorState.getCurrentContent())
         setMessages([...messages, html])
         // setEditorState(getResetEditorState(editorState))
         // focus()
-    }, [newMessageCount])
+    }, [editorState])
 
     function focus() {
         editor.current?.focus();
