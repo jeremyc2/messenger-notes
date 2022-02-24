@@ -48,6 +48,9 @@ export default function MessageInput({ messages, setMessages }: Props) {
 
     function sendMessage() {
         const html: string = stateToHTML(editorState.getCurrentContent())
+        
+        alert(JSON.stringify(editorState.getCurrentContent())
+        alert(JSON.stringify(editor.current?.innerText)
 
         setMessages([...messages, html])
         setEditorState(getResetEditorState(editorState))
