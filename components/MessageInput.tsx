@@ -50,6 +50,8 @@ export default function MessageInput({ messages, setMessages }: Props) {
     function sendMessage() {
         const html = sendButton.current?.getAttribute('data-messageHTML')
 
+        alert(html)
+
         setMessages([...messages, html])
         setEditorState(getResetEditorState(editorState))
         focus()
