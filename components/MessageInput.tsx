@@ -51,8 +51,6 @@ export default function MessageInput({ messages, setMessages }: Props) {
 
         setMessages([...messages, html])
         setEditorState(getResetEditorState(editorState))
-        
-        focus() 
     }
 
     return (
