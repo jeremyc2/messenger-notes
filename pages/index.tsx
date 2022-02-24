@@ -31,7 +31,6 @@ const Home: NextPage = () => {
         <NavBar />
         <Messages messages={messages}/>
         <MessageInput messages={messages} setMessages={setMessages} />
-        {/* <MessageInput messages={messages} setMessages={setMessages}/> */}
       </div>
     </div>
   )
