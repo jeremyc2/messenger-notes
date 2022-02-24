@@ -37,9 +37,9 @@ export default function MessageInput({ messages, setMessages }: Props) {
         () => EditorState.createWithContent(emptyContentState)
     )
 
-    useEffect(() => {
-        focus()
-    }, [editor])
+    // useEffect(() => {
+    //     focus()
+    // }, [editor])
 
     function focus() {
         editor.current?.focus();
