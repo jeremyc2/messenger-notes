@@ -33,10 +33,8 @@ const emptyContentState = convertFromRaw({
 export default function MessageInput({ messages, setMessages }: Props) {
     const editor = useRef<Editor>(null),
         sendButton = useRef<HTMLButtonElement>(null)
-
-    const [newMessageCount, setNewMessageCount] = useState(
-        () => 0
-    )
+        
+    var tempEditorState = useRef<EditorState | null>(null)
 
     const [editorState, setEditorState] = useState(
         () => EditorState.createWithContent(emptyContentState)
@@ -46,29 +44,32 @@ export default function MessageInput({ messages, setMessages }: Props) {
         focus()
     }, [])
 
-    useEffect(() => {
-        console.log((editorState.toJS() as any).currentContent)
-        if(newMessageCount == 0) return
-
-        const html = stateToHTML(editorState.getCurrentContent())
-        setMessages([...messages, html])
-        // setEditorState(getResetEditorState(editorState))
-        // focus()
-    }, [editorState])
-
     function focus() {
         editor.current?.focus();
         (navigator as ChromeNavigator).virtualKeyboard?.show()
     }
 
+    function onChange(editorState: EditorState) {
+        tempEditorState.current = editorState
+        setEditorState(editorState)
+    }
+
     function sendMessage() {
-        setNewMessageCount(newMessageCount + 1)
+        let editorState = tempEditorState.current
+        if(!editorState) return
+
+        console.log((editorState.toJS() as any).currentContent)
+
+        const html = stateToHTML(editorState.getCurrentContent())
+        setMessages([...messages, html])
+        // setEditorState(getResetEditorState(editorState))
+        // focus()
     }
 
     return (
         <div className={styles['input-base']}>
             <div className={styles.input}>
-                <Editor ref={editor} placeholder='Aa' editorKey='editor' editorState={editorState} onChange={setEditorState} spellCheck />
+                <Editor ref={editor} placeholder='Aa' editorKey='editor' editorState={editorState} onChange={onChange} spellCheck />
             </div>
             <button ref={sendButton} onClick={sendMessage}>
                 <svg width="30px" height="30px" viewBox="0 0 24 24">
