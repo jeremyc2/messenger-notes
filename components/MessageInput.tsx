@@ -30,6 +30,7 @@ export default function MessageInput({ messages, setMessages }: Props) {
         if(!editor.current) return
 
         editor.current.innerHTML = ''
+        editor.current.classList.add(styles.placeholder)
     }
 
     function handleInput(e: React.FormEvent<HTMLDivElement>) {
