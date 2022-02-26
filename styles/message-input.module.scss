@@ -12,6 +12,10 @@
         padding: var(--size-2) var(--size-3);
         max-height: 15rem;
         overflow-y: auto; 
+
+        &:focus {
+            outline: none;
+        }
         
         &.placeholder::before {
             content: 'Aa'
