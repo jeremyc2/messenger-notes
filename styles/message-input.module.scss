@@ -11,11 +11,11 @@
         border: var(--border-size-2) solid var(--text-2);
         padding: var(--size-2) var(--size-3);
         max-height: 15rem;
-        overflow-y: auto;  
-    }
-
-    :global(.public-DraftEditorPlaceholder-root) {
-        color: var(--text-2);
+        overflow-y: auto; 
+        
+        &.placeholder::before {
+            content: 'Aa'
+        }
     }
 
     button {
