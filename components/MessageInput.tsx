@@ -34,7 +34,7 @@ export default function MessageInput({ messages, setMessages }: Props) {
 
     function handleInput(e: React.FormEvent) {
         let editor = e.currentTarget,
-            isEmpty = editor.innerHTML === ''
+            isEmpty = editor.innerText === ''
             
         editor.classList.toggle(styles.placeholder, isEmpty)
     }
