@@ -1,5 +1,4 @@
 import styles from '../styles/message-input.module.scss'
-import 'draft-js/dist/Draft.css';
 import { useEffect, useRef } from 'react'
 
 interface Props {
