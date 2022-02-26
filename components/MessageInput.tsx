@@ -36,7 +36,7 @@ export default function MessageInput({ messages, setMessages }: Props) {
         let editor = e.currentTarget,
             isEmpty = editor.innerHTML === ''
             
-        editor.classList.toggle('placeholder', isEmpty)
+        editor.classList.toggle(styles.placeholder, isEmpty)
     }
 
     function sendMessage() {
