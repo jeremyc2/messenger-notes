@@ -32,7 +32,7 @@ export default function MessageInput({ messages, setMessages }: Props) {
         editor.current.innerHTML = ''
     }
 
-    function handleInput(e: React.FormEvent) {
+    function handleInput(e: React.FormEvent<HTMLDivElement>) {
         let editor = e.currentTarget,
             isEmpty = editor.innerText === ''
             
