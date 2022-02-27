@@ -43,7 +43,7 @@ export default function MessageInput({ messages, setMessages }: Props) {
     }
 
     function sendMessage() {
-        if(!editor.current) return
+        if(!editor.current || editor.current.innerText === '') return
 
         const newMessage = createMessage(editor.current)
         setMessages([...messages, newMessage])
