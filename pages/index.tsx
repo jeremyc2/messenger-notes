@@ -18,6 +18,13 @@ const Home: NextPage = () => {
   useEffect(() => {
     resizeApp()
     window.addEventListener('resize', resizeApp)
+
+    var storedMessages = localStorage.getItem('messages')
+
+    if(storedMessages) {
+      setMessages(JSON.parse(storedMessages))
+    }
+
     return () => window.removeEventListener('resize', resizeApp)
   },[])
   
@@ -29,7 +36,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="icon.svg" />
       </Head>
       <div className={styles.main}>
-        <NavBar />
+        <NavBar setMessages={setMessages} />
         <Messages messages={messages}/>
         <MessageInput messages={messages} setMessages={setMessages} />
       </div>

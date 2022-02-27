@@ -45,8 +45,11 @@ export default function MessageInput({ messages, setMessages }: Props) {
     function sendMessage() {
         if(!editor.current || !/\S/.test(editor.current.innerText)) return
 
-        const newMessage = createMessage(editor.current)
-        setMessages([...messages, newMessage])
+        const newMessage = createMessage(editor.current),
+            newMessages = [...messages, newMessage]
+            
+        localStorage.setItem('messages', JSON.stringify(newMessages))
+        setMessages(newMessages)
         clear()
         focus()
     }
