@@ -5,6 +5,7 @@ import MessageInput from '../components/MessageInput'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+import { MessageNode } from '../utils/message-conversion'
 
 function resizeApp() {
   let vh = window.innerHeight * 0.01
@@ -12,13 +13,13 @@ function resizeApp() {
 }
 
 const Home: NextPage = () => {
-  const [messages, setMessages] = useState<string[]>([])
+  const [messages, setMessages] = useState<MessageNode[][]>([])
 
   useEffect(() => {
     resizeApp()
     window.addEventListener('resize', resizeApp)
     return () => window.removeEventListener('resize', resizeApp)
-  })
+  },[])
   
   return (
     <div>

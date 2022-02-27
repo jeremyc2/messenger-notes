@@ -1,8 +1,10 @@
 import styles from '../styles/message-input.module.scss'
+import { createMessage } from '../utils/message-conversion'
 import { useEffect, useRef } from 'react'
+import { MessageNode } from '../utils/message-conversion'
 
 interface Props {
-    messages: string[],
+    messages: MessageNode[][],
     setMessages: Function
 }
 
@@ -36,15 +38,15 @@ export default function MessageInput({ messages, setMessages }: Props) {
     function handleInput(e: React.FormEvent<HTMLDivElement>) {
         let editor = e.currentTarget,
             isEmpty = editor.innerText === ''
-            
+
         editor.classList.toggle(styles.placeholder, isEmpty)
     }
 
     function sendMessage() {
         if(!editor.current) return
 
-        const html = editor.current.innerHTML
-        setMessages([...messages, html])
+        const newMessage = createMessage(editor.current)
+        setMessages([...messages, newMessage])
         clear()
         focus()
     }

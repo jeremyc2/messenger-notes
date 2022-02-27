@@ -1,8 +1,10 @@
 import styles from '../styles/messages.module.scss'
 import { useEffect, useRef } from 'react'
+import { messageToHTML } from '../utils/message-conversion'
+import { MessageNode } from '../utils/message-conversion'
 
 interface Props {
-    messages: string[]
+    messages: MessageNode[][]
 }
 
 export default function MessageInput({ messages }: Props) {
@@ -15,7 +17,8 @@ export default function MessageInput({ messages }: Props) {
     return (
         <div ref={messagesContainer} className={styles.messages}>
             {messages.map((message, index) => {
-                return <div key={`message-${index}`} className={styles.message} dangerouslySetInnerHTML={{ __html: message }}></div>
+                const html: string = messageToHTML(message)
+                return <div key={`message-${index}`} className={styles.message} dangerouslySetInnerHTML={{ __html: html }}></div>
             })}
         </div>
     )
