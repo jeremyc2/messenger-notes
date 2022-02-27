@@ -5,7 +5,7 @@ export interface MessageNode {
 }
 
 function convertNodeToJSON(node: Node) {
-    const json: MessageNode = { type: (node as HTMLElement).tagName.toLowerCase() || 'text' }
+    const json: MessageNode = { type: ((node as HTMLElement).tagName || 'text').toLowerCase() }
     if(node.nodeValue) {
         json.value = node.nodeValue
     }
