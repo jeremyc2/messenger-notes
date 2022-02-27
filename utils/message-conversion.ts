@@ -5,7 +5,7 @@ export interface MessageNode {
 }
 
 function convertNodeToJSON(node: Node) {
-    const json: MessageNode = { type: (node as HTMLElement).tagName || 'TEXT' }
+    const json: MessageNode = { type: (node as HTMLElement).tagName.toLowerCase() || 'text' }
     if(node.nodeValue) {
         json.value = node.nodeValue
     }
@@ -13,10 +13,10 @@ function convertNodeToJSON(node: Node) {
 }
 
 function convertJSONToHTML(json: MessageNode): string {
-    if(json.type === 'TEXT' && json.value) {
+    if(json.type === 'text' && json.value) {
         return json.value
     } else {
-        const nodeType = json.type.toLocaleLowerCase()
+        const nodeType = json.type
         return `<${nodeType}>${
             json.children? json.children
                 .map(child => convertJSONToHTML(child))
