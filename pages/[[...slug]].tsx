@@ -49,7 +49,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Messenger Notes</title>
+        <title>{collection || defaultCollection}</title>
         <meta name="description" content="" />
         <link rel="icon" href="icon.svg" />
       </Head>
