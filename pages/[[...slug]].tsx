@@ -28,7 +28,10 @@ const Home: NextPage = () => {
       
     if(storedMessages) {
       setMessages(JSON.parse(storedMessages))
+    } else {
+      setMessages([])
     }
+
   }, [router.query.slug])
 
   useEffect(() => {
