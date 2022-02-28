@@ -1,13 +1,15 @@
 import styles from '../styles/navbar.module.scss'
 
 interface Props {
-    collection: string,
+    collection?: string,
     setMessages: Function
 }
 
 export default function NavBar({ collection, setMessages }: Props) {
 
     function deleteMessages() {
+        if(!collection) return
+
         localStorage.removeItem(collection)
         setMessages([])
     }
@@ -15,7 +17,7 @@ export default function NavBar({ collection, setMessages }: Props) {
         <div className={styles.navbar}>
             <div className={styles.title}>
                 <img src="/animal-avatars/antelope1.png" alt="" />
-                <div>{collection}</div>
+                <div>{collection || ''}</div>
             </div>
             <button onClick={deleteMessages}>
                 <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="var(--text-2)">

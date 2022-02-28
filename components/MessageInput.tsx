@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 import { MessageNode } from '../utils/message-conversion'
 
 interface Props {
-    collection: string,
+    collection?: string,
     messages: MessageNode[][],
     setMessages: Function
 }
@@ -44,6 +44,8 @@ export default function MessageInput({ collection, messages, setMessages }: Prop
     }
 
     function sendMessage() {
+        if(!collection) return
+
         if(!editor.current || !/\S/.test(editor.current.innerText)) return
 
         const newMessage = createMessage(editor.current),

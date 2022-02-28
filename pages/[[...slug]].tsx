@@ -15,14 +15,20 @@ function resizeApp() {
 
 const Home: NextPage = () => {
   const [messages, setMessages] = useState<MessageNode[][]>([]),
-    [collection, setCollection] = useState<string>('Notes'),
-    router = useRouter()
+    [collection, setCollection] = useState<string>(),
+    router = useRouter(),
+    defaultCollection = 'Notes'
 
   useEffect(() => {
+    if(!router.isReady) return
 
-    if(!router.query.slug) return
+    let tempCollection
+    if(router.query.slug) {
+      tempCollection = Array.from(router.query.slug).join(' ')
+    } else {
+      tempCollection = defaultCollection
+    }
 
-    let tempCollection = Array.from(router.query.slug).join(' ')
     setCollection(tempCollection)
 
     var storedMessages = localStorage.getItem(tempCollection)
@@ -31,7 +37,7 @@ const Home: NextPage = () => {
       setMessages(JSON.parse(storedMessages))
     }
 
-  }, [router.query.slug])
+  }, [router.isReady])
 
   useEffect(() => {
     resizeApp()
