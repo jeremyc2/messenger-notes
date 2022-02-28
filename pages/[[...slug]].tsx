@@ -18,11 +18,14 @@ const Home: NextPage = () => {
     router = useRouter()
 
   useEffect(() => {
-    if(!router.query.slug) return
+    var collection: string = 'Notes'
 
-    var collection: string = Array.from(router.query.slug).join(' '),
-      storedMessages = localStorage.getItem(collection)
+    if(router.query.slug) {
+      collection = Array.from(router.query.slug).join(' ')
+    }
 
+    var storedMessages = localStorage.getItem(collection)
+      
     if(storedMessages) {
       setMessages(JSON.parse(storedMessages))
     }
