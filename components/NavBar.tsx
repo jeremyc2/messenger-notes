@@ -1,19 +1,27 @@
 import styles from '../styles/navbar.module.scss'
+import { useRouter } from 'next/router'
 
 interface Props {
     setMessages: Function
 }
 
 export default function NavBar({ setMessages }: Props) {
+    const router = useRouter()
+
+    var collection: string = 'Notes'
+    if(router.query.slug) {
+        collection = Array.from(router.query.slug).join(' ')
+    }
+
     function deleteMessages() {
-        localStorage.removeItem('messages')
+        localStorage.removeItem(collection)
         setMessages([])
     }
     return (
         <div className={styles.navbar}>
             <div className={styles.title}>
                 <img src="/animal-avatars/antelope1.png" alt="" />
-                <div>Notes</div>
+                <div>{collection}</div>
             </div>
             <button onClick={deleteMessages}>
                 <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="var(--text-2)">

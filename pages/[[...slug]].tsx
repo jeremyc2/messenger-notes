@@ -3,6 +3,7 @@ import NavBar from '../components/NavBar'
 import Messages from '../components/Messages'
 import MessageInput from '../components/MessageInput'
 import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { MessageNode } from '../utils/message-conversion'
@@ -13,13 +14,19 @@ function resizeApp() {
 }
 
 const Home: NextPage = () => {
-  const [messages, setMessages] = useState<MessageNode[][]>([])
+  const [messages, setMessages] = useState<MessageNode[][]>([]),
+    router = useRouter()
+
+  let collection: string
+  if(router.query.slug) {
+      collection = Array.from(router.query.slug).join(' ')
+  }
 
   useEffect(() => {
     resizeApp()
     window.addEventListener('resize', resizeApp)
 
-    var storedMessages = localStorage.getItem('messages')
+    var storedMessages = localStorage.getItem(collection || 'Notes')
 
     if(storedMessages) {
       setMessages(JSON.parse(storedMessages))

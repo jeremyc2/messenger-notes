@@ -1,6 +1,7 @@
 import styles from '../styles/message-input.module.scss'
 import { createMessage } from '../utils/message-conversion'
 import { useEffect, useRef } from 'react'
+import { useRouter } from 'next/router'
 import { MessageNode } from '../utils/message-conversion'
 
 interface Props {
@@ -15,7 +16,13 @@ interface ChromeNavigator extends Navigator {
 }
 
 export default function MessageInput({ messages, setMessages }: Props) {
-    const editor = useRef<HTMLDivElement>(null)
+    const editor = useRef<HTMLDivElement>(null),
+        router = useRouter()
+
+    let collection: string
+    if(router.query.slug) {
+        collection = Array.from(router.query.slug).join(' ')
+    }
 
     useEffect(() => {
         focus()
@@ -48,7 +55,7 @@ export default function MessageInput({ messages, setMessages }: Props) {
         const newMessage = createMessage(editor.current),
             newMessages = [...messages, newMessage]
             
-        localStorage.setItem('messages', JSON.stringify(newMessages))
+        localStorage.setItem(collection, JSON.stringify(newMessages))
         setMessages(newMessages)
         clear()
         focus()
