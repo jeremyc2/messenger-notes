@@ -19,7 +19,7 @@ export default function MessageInput({ messages, setMessages }: Props) {
     const editor = useRef<HTMLDivElement>(null),
         router = useRouter()
 
-    let collection: string
+    var collection: string = 'Notes'
     if(router.query.slug) {
         collection = Array.from(router.query.slug).join(' ')
     }

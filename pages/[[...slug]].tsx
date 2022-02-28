@@ -17,7 +17,7 @@ const Home: NextPage = () => {
   const [messages, setMessages] = useState<MessageNode[][]>([]),
     router = useRouter()
 
-  let collection: string
+  var collection: string = 'Notes'
   if(router.query.slug) {
       collection = Array.from(router.query.slug).join(' ')
   }
@@ -26,7 +26,7 @@ const Home: NextPage = () => {
     resizeApp()
     window.addEventListener('resize', resizeApp)
 
-    var storedMessages = localStorage.getItem(collection || 'Notes')
+    var storedMessages = localStorage.getItem(collection)
 
     if(storedMessages) {
       setMessages(JSON.parse(storedMessages))
