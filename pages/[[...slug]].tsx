@@ -17,20 +17,20 @@ const Home: NextPage = () => {
   const [messages, setMessages] = useState<MessageNode[][]>([]),
     router = useRouter()
 
-  var collection: string = 'Notes'
-  if(router.query.slug) {
-      collection = Array.from(router.query.slug).join(' ')
-  }
-
   useEffect(() => {
-    resizeApp()
-    window.addEventListener('resize', resizeApp)
+    if(!router.query.slug) return
 
-    var storedMessages = localStorage.getItem(collection)
+    var collection: string = Array.from(router.query.slug).join(' '),
+      storedMessages = localStorage.getItem(collection)
 
     if(storedMessages) {
       setMessages(JSON.parse(storedMessages))
     }
+  }, [router.query.slug])
+
+  useEffect(() => {
+    resizeApp()
+    window.addEventListener('resize', resizeApp)
 
     return () => window.removeEventListener('resize', resizeApp)
   },[])
