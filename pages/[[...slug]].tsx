@@ -15,21 +15,20 @@ function resizeApp() {
 
 const Home: NextPage = () => {
   const [messages, setMessages] = useState<MessageNode[][]>([]),
+    [collection, setCollection] = useState<string>('Notes'),
     router = useRouter()
 
   useEffect(() => {
-    var collection: string = 'Notes'
 
-    if(router.query.slug) {
-      collection = Array.from(router.query.slug).join(' ')
-    }
+    if(!router.query.slug) return
 
-    var storedMessages = localStorage.getItem(collection)
-      
+    let tempCollection = Array.from(router.query.slug).join(' ')
+    setCollection(tempCollection)
+
+    var storedMessages = localStorage.getItem(tempCollection)
+    
     if(storedMessages) {
       setMessages(JSON.parse(storedMessages))
-    } else {
-      setMessages([])
     }
 
   }, [router.query.slug])
@@ -49,9 +48,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="icon.svg" />
       </Head>
       <div className={styles.main}>
-        <NavBar setMessages={setMessages} />
+        <NavBar collection={collection} setMessages={setMessages} />
         <Messages messages={messages}/>
-        <MessageInput messages={messages} setMessages={setMessages} />
+        <MessageInput collection={collection} messages={messages} setMessages={setMessages} />
       </div>
     </div>
   )

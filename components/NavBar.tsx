@@ -1,17 +1,11 @@
 import styles from '../styles/navbar.module.scss'
-import { useRouter } from 'next/router'
 
 interface Props {
+    collection: string,
     setMessages: Function
 }
 
-export default function NavBar({ setMessages }: Props) {
-    const router = useRouter()
-
-    var collection: string = 'Notes'
-    if(router.query.slug) {
-        collection = Array.from(router.query.slug).join(' ')
-    }
+export default function NavBar({ collection, setMessages }: Props) {
 
     function deleteMessages() {
         localStorage.removeItem(collection)

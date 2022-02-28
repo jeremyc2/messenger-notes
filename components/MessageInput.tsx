@@ -1,10 +1,10 @@
 import styles from '../styles/message-input.module.scss'
 import { createMessage } from '../utils/message-conversion'
 import { useEffect, useRef } from 'react'
-import { useRouter } from 'next/router'
 import { MessageNode } from '../utils/message-conversion'
 
 interface Props {
+    collection: string,
     messages: MessageNode[][],
     setMessages: Function
 }
@@ -15,14 +15,8 @@ interface ChromeNavigator extends Navigator {
     }
 }
 
-export default function MessageInput({ messages, setMessages }: Props) {
-    const editor = useRef<HTMLDivElement>(null),
-        router = useRouter()
-
-    var collection: string = 'Notes'
-    if(router.query.slug) {
-        collection = Array.from(router.query.slug).join(' ')
-    }
+export default function MessageInput({ collection, messages, setMessages }: Props) {
+    const editor = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         focus()
