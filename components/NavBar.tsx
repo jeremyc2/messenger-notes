@@ -12,7 +12,7 @@ export default function NavBar({ setMessages }: Props) {
     return (
         <div className={styles.navbar}>
             <div className={styles.title}>
-                <img src="/animal-avatars/antelope.png" alt="" />
+                <img src="/animal-avatars/antelope1.png" alt="" />
                 <div>Notes</div>
             </div>
             <button onClick={deleteMessages}>
