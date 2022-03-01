@@ -17,7 +17,9 @@ const Notes: NextPage = () => {
         <link rel="icon" href="icon.svg" />
       </Head>
       <div>
-        {collections}
+        {collections?.map((collection, index) => {
+          return <div key={`collection${index}`}>{collection}</div>
+        })}
       </div>
     </div>
   )
