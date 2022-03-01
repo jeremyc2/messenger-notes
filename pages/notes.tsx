@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 const Notes: NextPage = () => {
@@ -18,7 +19,11 @@ const Notes: NextPage = () => {
       </Head>
       <div>
         {collections?.map((collection, index) => {
-          return <div key={`collection${index}`}><a href={`/${collection}`}>{collection}</a></div>
+          return <div key={`collection${index}`}>
+            <Link href={`/${collection}`}>
+              <a>{collection}</a>
+            </Link>
+          </div>
         })}
       </div>
     </div>
