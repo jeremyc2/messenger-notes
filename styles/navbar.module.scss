@@ -12,6 +12,11 @@
     .title {
         display: flex;
         gap: var(--size-2);
+
+        a {
+            color: inherit;
+            align-self: center;
+        }
     }
 
     div {
