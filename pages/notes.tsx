@@ -1,13 +1,15 @@
+import styles from '../styles/notepage.module.scss'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-const Notes: NextPage = () => {
+const NotePage: NextPage = () => {
   const [collections, setCollections] = useState<string[]>()
 
   useEffect(() => {
-    setCollections(Object.keys(localStorage))
+    setCollections(Object.keys(localStorage)
+      .filter(collection => collection !== 'ally-supports-cache'))
   }, [])
 
   return (
@@ -17,17 +19,15 @@ const Notes: NextPage = () => {
         <meta name="description" content="" />
         <link rel="icon" href="icon.svg" />
       </Head>
-      <div>
+      <div className={styles.list}>
         {collections?.map((collection, index) => {
-          return <div key={`collection${index}`}>
-            <Link href={`/${collection}`}>
-              <a>{collection}</a>
-            </Link>
-          </div>
+          return <Link key={`collection${index}`} href={`/${collection}`}>
+            <a>{collection}</a>
+          </Link>
         })}
       </div>
     </div>
   )
 }
 
-export default Notes
+export default NotePage

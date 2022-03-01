@@ -1,0 +1,18 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    font-size: 1.5em;
+    a {
+        padding: var(--size-2);
+        border: 1px solid;
+        color: inherit;
+
+        margin-block: unset;
+        margin-inline: unset;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
