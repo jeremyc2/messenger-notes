@@ -13,7 +13,7 @@ function resizeApp() {
   document.documentElement.style.setProperty('--vh', `${vh}px`)
 }
 
-const Home: NextPage = () => {
+const Notepage: NextPage = () => {
   const [messages, setMessages] = useState<MessageNode[][]>([]),
     [collection, setCollection] = useState<string>(),
     router = useRouter(),
@@ -62,4 +62,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Notepage
