@@ -18,7 +18,7 @@ const Notes: NextPage = () => {
       </Head>
       <div>
         {collections?.map((collection, index) => {
-          return <div key={`collection${index}`}>{collection}</div>
+          return <div key={`collection${index}`}><a href={`/${collection}`}>{collection}</a></div>
         })}
       </div>
     </div>
