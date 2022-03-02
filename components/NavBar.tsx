@@ -1,5 +1,6 @@
 import styles from '../styles/navbar.module.scss'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 interface Props {
     collection?: string,
@@ -8,11 +9,13 @@ interface Props {
 
 export default function NavBar({ collection, setMessages }: Props) {
 
+    const router = useRouter()
     function deleteMessages() {
         if(!collection) return
 
         localStorage.removeItem(collection)
         setMessages([])
+        router.push('/notes')
     }
     return (
         <div className={styles.navbar}>
