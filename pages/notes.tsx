@@ -5,12 +5,22 @@ import NavBar2 from '../components/NavBar2'
 import CollectionItem from '../components/CollectionItem'
 import { useEffect, useState } from 'react'
 
+interface Collection {
+  name: string,
+  lastMessage: string
+}
+
 const NotePage: NextPage = () => {
-  const [collections, setCollections] = useState<string[]>()
+  const [collections, setCollections] = useState<Collection[]>()
 
   useEffect(() => {
-    setCollections(Object.keys(localStorage)
-      .filter(collection => collection !== 'ally-supports-cache'))
+    setCollections(Object.entries(localStorage)
+    .filter(
+      collection => collection[0] !== 'ally-supports-cache'
+    )
+    .map(collection => { 
+      return {name: collection[0], lastMessage: collection[1]} 
+    }))
   }, [])
 
   return (
@@ -23,7 +33,10 @@ const NotePage: NextPage = () => {
       <NavBar2 title='Notes' />
       <div className={styles.list}>
         {collections?.map((collection, index) => {
-          return <CollectionItem collection={collection} key={`collection${index}`} />
+          return <CollectionItem 
+            name={collection.name} 
+            lastMessage={collection.lastMessage} 
+            key={`collection${index}`} />
         })}
       </div>
     </div>
