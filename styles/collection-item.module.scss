@@ -20,8 +20,14 @@ a.item {
     .title { 
         grid-area: 1 / 2 / 2 / 3; 
         font-size: var(--font-size-3);
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
     .message { 
         grid-area: 2 / 2 / 3 / 3; 
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 }
