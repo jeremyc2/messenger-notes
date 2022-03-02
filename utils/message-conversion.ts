@@ -25,14 +25,34 @@ function convertJSONToHTML(json: MessageNode): string {
     }
 }
 
+function convertJSONToText(json: MessageNode): string {
+    if(json.type === 'text' && json.value) {
+        return json.value
+    } else {
+        return json.children? json.children
+            .map(child => convertJSONToText(child))
+            .join(''): ''
+    }
+}
+
 export function messageToHTML(message: MessageNode[]) {
-    var html = ''
+    var html: string = ''
 
     message.map((message) => {
         html += convertJSONToHTML(message)
     })
 
     return html
+}
+
+export function messageToText(message: MessageNode[]) {
+    var text: string = ''
+
+    message.map((message) => {
+        text += convertJSONToText(message)
+    })
+
+    return text
 }
 
 export function createMessage(node: Node) {

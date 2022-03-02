@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import NavBar2 from '../components/NavBar2'
 import CollectionItem from '../components/CollectionItem'
+import { messageToText } from '../utils/message-conversion'
 import { useEffect, useState } from 'react'
 
 interface Collection {
@@ -19,7 +20,8 @@ const NotePage: NextPage = () => {
       collection => collection[0] !== 'ally-supports-cache'
     )
     .map(collection => { 
-      return {name: collection[0], lastMessage: collection[1]} 
+      const messages = JSON.parse(collection[1])
+      return {name: collection[0], lastMessage: messageToText(messages[messages.length - 1])} 
     }))
   }, [])
 
