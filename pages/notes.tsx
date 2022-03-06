@@ -16,13 +16,12 @@ const NotePage: NextPage = () => {
   const [collections, setCollections] = useState<Collection[]>()
 
   useEffect(() => {
-    const rawCollections = Object.entries(localStorage)
-    // TODO remove any type
-    const collections = rawCollections
-      .filter(collection => collection[0] !== 'ally-supports-cache')
-      .map(([name, data]: CollectionMap) => {
-        return {name, latest: JSON.parse(data).latest}
-      })
+    const rawCollections = Object.entries(localStorage),
+      collections = rawCollections
+        .filter(collection => collection[0] !== 'ally-supports-cache')
+        .map(([name, data]: CollectionMap) => {
+          return {name, latest: JSON.parse(data).latest}
+        })
     setCollections(collections)
   }, [])
 
