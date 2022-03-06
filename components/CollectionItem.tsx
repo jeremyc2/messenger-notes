@@ -3,15 +3,15 @@ import Link from 'next/link'
 
 interface Props {
     name: string,
-    lastMessage: string
+    summary: string
 }
 
-export default function CollectionItem({ name, lastMessage }: Props) {
+export default function CollectionItem({ name, summary }: Props) {
     return <Link href={`/${name}`}>
         <a className={styles.item}>
             <img className={styles.icon} src="/animal-avatars/antelope1.png" alt="" />
             <div className={styles.title}>{name}</div>
-            <div className={styles.message}>{lastMessage}</div>
+            <div className={styles.message}>{summary}</div>
         </a>
     </Link>
 }

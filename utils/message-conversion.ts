@@ -12,6 +12,16 @@ function convertNodeToJSON(node: Node) {
     return json
 }
 
+export function createMessage(node: Node) {
+    return Array.from(node.childNodes).map((node) => {
+        var json = convertNodeToJSON(node)
+        if(node.childNodes.length > 0) {
+            json.children = createMessage(node)
+        }
+        return json
+    })
+}
+
 function convertJSONToHTML(json: MessageNode): string {
     if(json.type === 'text' && json.value) {
         return json.value
@@ -25,42 +35,8 @@ function convertJSONToHTML(json: MessageNode): string {
     }
 }
 
-function convertJSONToText(json: MessageNode): string {
-    if(json.type === 'text' && json.value) {
-        return json.value
-    } else {
-        return json.children? json.children
-            .map(child => convertJSONToText(child))
-            .join(''): ''
-    }
-}
-
 export function messageToHTML(message: MessageNode[]) {
-    var html: string = ''
-
-    message.map((message) => {
-        html += convertJSONToHTML(message)
-    })
-
-    return html
-}
-
-export function messageToText(message: MessageNode[]) {
-    var text: string = ''
-
-    message.map((message) => {
-        text += convertJSONToText(message)
-    })
-
-    return text
-}
-
-export function createMessage(node: Node) {
-    return Array.from(node.childNodes).map((node) => {
-        var json = convertNodeToJSON(node)
-        if(node.childNodes.length > 0) {
-            json.children = createMessage(node)
-        }
-        return json
-    })
+    return message.map((message) => {
+        return convertJSONToHTML(message)
+    }).join('')
 }

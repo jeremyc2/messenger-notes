@@ -3,26 +3,27 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import NavBar2 from '../components/NavBar2'
 import CollectionItem from '../components/CollectionItem'
-import { messageToText } from '../utils/message-conversion'
 import { useEffect, useState } from 'react'
 
 interface Collection {
   name: string,
-  lastMessage: string
+  latest: string
 }
+
+type CollectionMap = [string, string]
 
 const NotePage: NextPage = () => {
   const [collections, setCollections] = useState<Collection[]>()
 
   useEffect(() => {
-    setCollections(Object.entries(localStorage)
-    .filter(
-      collection => collection[0] !== 'ally-supports-cache'
-    )
-    .map(collection => { 
-      const messages = JSON.parse(collection[1])
-      return {name: collection[0], lastMessage: messageToText(messages[messages.length - 1])} 
-    }))
+    const rawCollections = Object.entries(localStorage)
+    // TODO remove any type
+    const collections = rawCollections
+      .filter(collection => collection[0] !== 'ally-supports-cache')
+      .map(([name, data]: CollectionMap) => {
+        return {name, latest: JSON.parse(data).latest}
+      })
+    setCollections(collections)
   }, [])
 
   return (
@@ -34,10 +35,10 @@ const NotePage: NextPage = () => {
       </Head>
       <NavBar2 title='Notes' />
       <div className={styles.list}>
-        {collections?.map((collection, index) => {
+        {collections?.map(({name, latest}, index) => {
           return <CollectionItem 
-            name={collection.name} 
-            lastMessage={collection.lastMessage} 
+            name={name} 
+            summary={latest} 
             key={`collection${index}`} />
         })}
       </div>

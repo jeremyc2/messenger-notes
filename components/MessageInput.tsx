@@ -5,7 +5,7 @@ import { MessageNode } from '../utils/message-conversion'
 
 interface Props {
     collection?: string,
-    messages: MessageNode[][],
+    messages?: MessageNode[][],
     setMessages: Function
 }
 
@@ -15,7 +15,7 @@ interface ChromeNavigator extends Navigator {
     }
 }
 
-export default function MessageInput({ collection, messages, setMessages }: Props) {
+export default function MessageInput({ collection, messages = [], setMessages }: Props) {
     const editor = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -46,12 +46,13 @@ export default function MessageInput({ collection, messages, setMessages }: Prop
     function sendMessage() {
         if(!collection) return
 
-        if(!editor.current || !/\S/.test(editor.current.innerText)) return
+        const text = editor.current?.innerText
+        if(!text || !/\S/.test(text)) return
 
         const newMessage = createMessage(editor.current),
             newMessages = [...messages, newMessage]
             
-        localStorage.setItem(collection, JSON.stringify(newMessages))
+        localStorage.setItem(collection, JSON.stringify({latest: text, messages: newMessages}))
         setMessages(newMessages)
         clear()
         focus()

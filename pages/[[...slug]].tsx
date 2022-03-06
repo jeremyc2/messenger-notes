@@ -14,7 +14,7 @@ function resizeApp() {
 }
 
 const Notepage: NextPage = () => {
-  const [messages, setMessages] = useState<MessageNode[][]>([]),
+  const [messages, setMessages] = useState<MessageNode[][]>(),
     [collection, setCollection] = useState<string>(),
     router = useRouter(),
     defaultCollection = 'Notes'
@@ -31,10 +31,12 @@ const Notepage: NextPage = () => {
 
     setCollection(tempCollection)
 
-    var storedMessages = localStorage.getItem(tempCollection)
-    
-    if(storedMessages) {
-      setMessages(JSON.parse(storedMessages))
+    const localCollection = localStorage.getItem(tempCollection)
+    if(!localCollection) return
+
+    var storedCollection = JSON.parse(localCollection)
+    if(storedCollection) {
+      setMessages(storedCollection.messages)
     }
 
   }, [router.isReady])
@@ -55,7 +57,7 @@ const Notepage: NextPage = () => {
       </Head>
       <div className={styles.main}>
         <NavBar collection={collection} setMessages={setMessages} />
-        <Messages messages={messages}/>
+        <Messages messages={messages} />
         <MessageInput collection={collection} messages={messages} setMessages={setMessages} />
       </div>
     </div>
