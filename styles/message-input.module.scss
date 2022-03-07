@@ -28,6 +28,8 @@
         svg {
             fill: var(--primary-color);
             stroke: none;
+            min-width: 30px;
+            min-height: 30px;
         }
     }
 }
