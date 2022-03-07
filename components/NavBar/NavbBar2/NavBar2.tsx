@@ -1,4 +1,4 @@
-import styles from '../styles/navbar.module.scss'
+import styles from '../navbar.module.scss'
 
 interface Props {
     title: string

@@ -1,4 +1,4 @@
-import styles from '../styles/collection-item.module.scss'
+import styles from './collection-item.module.scss'
 import Link from 'next/link'
 
 interface Props {
