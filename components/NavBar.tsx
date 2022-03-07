@@ -31,8 +31,9 @@ export default function NavBar({ collection, setMessages }: Props) {
                 <div>{collection || ''}</div>
             </div>
             <button onClick={deleteMessages}>
-                <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="var(--text-2)">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M10 3h3v1h-1v9l-1 1H4l-1-1V4H2V3h3V2a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v1zM9 2H6v1h3V2zM4 13h7V4H4v9zm2-8H5v7h1V5zm1 0h1v7H7V5zm2 0h1v7H9V5z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="var(--text-2)">
+                    <path d="M0 0h24v24H0V0z" fill="none"/>
+                    <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
                 </svg>
             </button>
         </div>
