@@ -1,7 +1,6 @@
 import styles from '../styles/message-input.module.scss'
-import { createMessage } from '../utils/message-conversion'
+import { MessageNode, createMessage } from '../utils/message-conversion'
 import { useEffect, useRef } from 'react'
-import { MessageNode } from '../utils/message-conversion'
 
 interface Props {
     collection?: string,
