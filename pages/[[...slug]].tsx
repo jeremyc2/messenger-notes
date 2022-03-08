@@ -54,6 +54,8 @@ const Notepage: NextPage = () => {
         <title>{collection || defaultCollection}</title>
         <meta name="description" content="" />
         <link rel="icon" href="icon.svg" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#fff" />
       </Head>
       <div className={styles.main}>
         <NavBar collection={collection} setMessages={setMessages} />

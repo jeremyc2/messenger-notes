@@ -31,6 +31,8 @@ const NotePage: NextPage = () => {
         <title>Notes</title>
         <meta name="description" content="" />
         <link rel="icon" href="icon.svg" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#fff" />
       </Head>
       <NavBar2 title='Notes' />
       <div className={styles.list}>
