@@ -25,7 +25,10 @@ export default function NavBar2({ title }: Props) {
                 </svg>
             </button>
             <Modal show={modalOpen} setModalOpen={setModalOpen}>
-                <input autoFocus type="text" />
+                <div style={{ display: 'flex', gap: 'var(--size-2)' }}>
+                    <input autoFocus type="text" />
+                    <button>GO!</button>
+                </div>
             </Modal>
         </div>
     )
