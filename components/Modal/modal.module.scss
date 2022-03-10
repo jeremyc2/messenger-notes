@@ -17,6 +17,7 @@
     input, button {
         border-radius: var(--radius-2);
         padding: var(--size-2);
+        border: var(--border-size-2) solid var(--text-2);
 
         &:focus {
             outline: unset;
