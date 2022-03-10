@@ -7,7 +7,7 @@ interface Props {
     children?: ReactNode[]
 }
 
-export default function Modal({ show = true, children }: Props) {
+export default function Modal({ show = false, children }: Props) {
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
