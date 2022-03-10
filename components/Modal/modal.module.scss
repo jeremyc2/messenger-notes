@@ -12,12 +12,13 @@
 
     background-color: var(--surface-1);
     border-radius: var(--radius-2);
-    padding: var(--size-fluid-3);
+    padding: var(--size-fluid-2);
 
     input, button {
         border-radius: var(--radius-2);
         padding: var(--size-2);
         border: var(--border-size-2) solid var(--text-2);
+        max-width: calc(100vw - 5.5rem);
 
         &:focus {
             outline: unset;
