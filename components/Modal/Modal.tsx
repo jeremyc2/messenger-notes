@@ -4,10 +4,11 @@ import { ReactNode, useEffect, useState } from 'react'
 
 interface Props {
     show?: boolean
+    setModalOpen: Function
     children?: ReactNode[]
 }
 
-export default function Modal({ show = false, children }: Props) {
+export default function Modal({ show = false, setModalOpen, children }: Props) {
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
@@ -16,7 +17,7 @@ export default function Modal({ show = false, children }: Props) {
 
     if(!(mounted && show)) return null
     return createPortal(<div className={show? styles.show: ''}>
-        <div className={styles.content}>
+        <div className={styles.content} onClick={() => setModalOpen(false)}>
             {children}
         </div>
     </div>, document.body)
