@@ -1,5 +1,6 @@
 import styles from '../navbar.module.scss'
 import Modal from '../../Modal'
+import CreateCollection from './CreateCollection'
 import { useState } from 'react'
 
 interface Props {
@@ -25,10 +26,7 @@ export default function NavBar2({ title }: Props) {
                 </svg>
             </button>
             <Modal show={modalOpen} setModalOpen={setModalOpen}>
-                <div style={{ display: 'flex', gap: 'var(--size-2)' }}>
-                    <input autoFocus type="text" />
-                    <button>GO!</button>
-                </div>
+                <CreateCollection />
             </Modal>
         </div>
     )
