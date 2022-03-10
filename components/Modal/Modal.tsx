@@ -1,11 +1,11 @@
 import styles from './modal.module.scss'
 import { createPortal } from 'react-dom'
-import React, { useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 
 interface Props {
     show?: boolean
     setModalOpen: Function
-    children?: JSX.Element
+    children?: ReactNode
 }
 
 export default function Modal({ show = false, setModalOpen, children }: Props) {

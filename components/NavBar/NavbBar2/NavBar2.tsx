@@ -25,7 +25,7 @@ export default function NavBar2({ title }: Props) {
                 </svg>
             </button>
             <Modal show={modalOpen} setModalOpen={setModalOpen}>
-                <input type="text" />
+                <input autoFocus type="text" />
             </Modal>
         </div>
     )
