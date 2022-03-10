@@ -1,10 +1,25 @@
 .show {
     position: fixed;
     inset: 0;
-    background: black;
-    opacity: 0.4;
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .content {
-    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: var(--surface-1);
+    border-radius: var(--radius-2);
+    padding: var(--size-fluid-3);
+
+    input {
+        border-radius: var(--radius-2);
+        padding: var(--size-fluid-1);
+
+        &:focus {
+            outline: unset;
+        }
+    }
 }

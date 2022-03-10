@@ -1,11 +1,11 @@
 import styles from './modal.module.scss'
 import { createPortal } from 'react-dom'
-import { ReactNode, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 interface Props {
     show?: boolean
     setModalOpen: Function
-    children?: ReactNode[]
+    children?: JSX.Element
 }
 
 export default function Modal({ show = false, setModalOpen, children }: Props) {
@@ -15,9 +15,13 @@ export default function Modal({ show = false, setModalOpen, children }: Props) {
         setMounted(true)
     }, [])
 
+    function createCollection() {
+        setModalOpen(false)
+    }
+
     if(!(mounted && show)) return null
-    return createPortal(<div className={show? styles.show: ''}>
-        <div className={styles.content} onClick={() => setModalOpen(false)}>
+    return createPortal(<div className={show? styles.show: ''} onClick={createCollection}>
+        <div className={styles.content} onClick={(e) => e.stopPropagation()}>
             {children}
         </div>
     </div>, document.body)
