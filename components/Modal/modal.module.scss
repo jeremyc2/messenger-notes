@@ -10,18 +10,24 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
+    width: calc(100% - var(--size-3));
+    max-width: 20em;
+
     background-color: var(--surface-1);
     border-radius: var(--radius-2);
     padding: var(--size-fluid-2);
 
     input, button {
         border-radius: var(--radius-2);
-        padding: var(--size-2);
         border: var(--border-size-2) solid var(--text-2);
-        max-width: calc(100vw - 5.5rem);
+        padding: var(--size-2);
 
         &:focus {
             outline: unset;
         }
+    }
+
+    input {
+        width: 100%;
     }
 }

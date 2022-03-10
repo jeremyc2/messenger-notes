@@ -1,7 +1,7 @@
 import styles from '../styles/notepage.module.scss'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import NavBar2 from '../components/NavBar/NavbBar2'
+import NavBar2 from '../components/NavBar/NavBar2'
 import CollectionItem from '../components/CollectionItem'
 import { useEffect, useState } from 'react'
 
