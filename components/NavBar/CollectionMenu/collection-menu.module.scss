@@ -1,0 +1,15 @@
+.menu {
+    position: absolute;
+    right: var(--size-6);
+    top: var(--size-6);
+
+    background-color: var(--surface-1);
+    border-radius: var(--radius-2);
+
+    font-weight: initial;
+    font-size: initial;
+
+    .option {
+        padding: var(--size-fluid-2);
+    }
+}

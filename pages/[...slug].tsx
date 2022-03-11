@@ -58,7 +58,7 @@ const Notepage: NextPage = () => {
         <meta name="theme-color" content="#fff" />
       </Head>
       <div className={styles.main}>
-        <NavBar collection={collection} setMessages={setMessages} />
+        <NavBar collection={collection} />
         <Messages messages={messages} />
         <MessageInput collection={collection} messages={messages} setMessages={setMessages} />
       </div>

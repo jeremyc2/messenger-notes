@@ -1,21 +1,17 @@
 import styles from './navbar.module.scss'
+import CollectionMenu from './CollectionMenu'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 interface Props {
     collection?: string,
-    setMessages: Function
 }
 
-export default function NavBar({ collection, setMessages }: Props) {
+export default function NavBar({ collection }: Props) {
+    const [menuOpen, setMenuOpen] = useState<boolean>(false)
 
-    const router = useRouter()
-    function deleteMessages() {
-        if(!collection) return
-
-        localStorage.removeItem(collection)
-        setMessages([])
-        router.push('/')
+    function toggleMenu() {
+        setMenuOpen(!menuOpen)
     }
     return (
         <div className={styles.navbar}>
@@ -30,12 +26,13 @@ export default function NavBar({ collection, setMessages }: Props) {
                 <img src="/animal-avatars/antelope1.png" alt="" />
                 <div>{collection || ''}</div>
             </div>
-            <button onClick={deleteMessages}>
+            <button onClick={toggleMenu}>
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="var(--text-2)">
                     <path d="M0 0h24v24H0V0z" fill="none"/>
                     <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
                 </svg>
             </button>
+            <CollectionMenu open={menuOpen} collection={collection} />
         </div>
     )
 }
