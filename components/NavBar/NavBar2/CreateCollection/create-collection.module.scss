@@ -2,3 +2,10 @@
     display: flex;
     gap: var(--size-2)
 }
+
+.label {
+    cursor: default;
+    display: block;
+    text-align: center;
+    font-size: larger;
+}

@@ -11,9 +11,12 @@ export default function CreateCollection() {
         router.push(`/${input.current.value}`)
     }
     return (
-        <div className={styles.controls}>
-            <input ref={input} autoFocus type="text" />
-            <button onClick={create}>GO!</button>
-        </div>
+        <>
+            <label className={styles.label} htmlFor="collection">Collection Name</label>
+            <div className={styles.controls}>
+                <input ref={input} autoFocus type="text" name='collection' />
+                <button onClick={create}>GO!</button>
+            </div>
+        </>
     )
 }
