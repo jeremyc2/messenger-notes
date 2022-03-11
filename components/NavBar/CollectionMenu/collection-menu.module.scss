@@ -1,7 +1,7 @@
 .menu {
     position: absolute;
-    right: var(--size-6);
-    top: var(--size-6);
+    right: var(--size-2);
+    top: var(--size-2);
 
     background-color: var(--surface-1);
     border-radius: var(--radius-2);
@@ -10,6 +10,6 @@
     font-size: initial;
 
     .option {
-        padding: var(--size-fluid-2);
+        padding: var(--size-3);
     }
 }
