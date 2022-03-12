@@ -15,11 +15,12 @@ export default function Modal({ show = false, setModalOpen, children }: Props) {
         setMounted(true)
     }, [])
 
+    if(!(mounted && show)) return null
+
     function createCollection() {
         setModalOpen(false)
     }
 
-    if(!(mounted && show)) return null
     return createPortal(<div className={styles.modal} onClick={createCollection}>
         <div className={styles.content} onClick={(e) => e.stopPropagation()}>
             {children}

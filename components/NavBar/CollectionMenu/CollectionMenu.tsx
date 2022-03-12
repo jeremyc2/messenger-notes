@@ -1,19 +1,18 @@
 import styles from './collection-menu.module.scss'
+import { useOutsideTrigger } from '../../../scripts/hooks'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useRef } from 'react'
 
 interface Props {
     collection?: string
-    open: boolean
+    setOpen: Function
 }
 
-export default function CollectionMenu({collection, open}: Props) {
-    const [mounted, setMounted] = useState(false),
+export default function CollectionMenu({collection, setOpen}: Props) {
+    const menu = useRef<HTMLDivElement>(null),
         router = useRouter()
 
-    useEffect(() => {
-        setMounted(true)
-    }, [])
+    useOutsideTrigger(menu, () => setOpen(false))
 
     function deleteCollection() {
         if(!collection) return
@@ -22,9 +21,8 @@ export default function CollectionMenu({collection, open}: Props) {
         router.push('/')
     }
 
-    if(!(mounted && open)) return null
     return (
-        <div className={styles.menu}>
+        <div ref={menu} className={styles.menu}>
             <button onClick={deleteCollection} className={styles.option}>
                 Delete Collection
             </button>
