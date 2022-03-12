@@ -6,7 +6,7 @@ import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import { MessageNode } from '../utils/message-conversion'
+import { MessageNode } from '../scripts/message-conversion'
 
 function resizeApp() {
   let vh = window.innerHeight * 0.01

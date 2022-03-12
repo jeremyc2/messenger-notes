@@ -1,5 +1,5 @@
 import styles from './messages.module.scss'
-import { MessageNode, messageToHTML } from '../../utils/message-conversion'
+import { MessageNode, messageToHTML } from '../../scripts/message-conversion'
 import { useEffect, useRef } from 'react'
 
 interface Props {
