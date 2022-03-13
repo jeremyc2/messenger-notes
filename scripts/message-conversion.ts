@@ -1,25 +1,9 @@
-export interface MessageNode {
-    type: string,
-    value?: string,
-    children?: MessageNode[]
-}
-
 function convertNodeToJSON(node: Node) {
     const json: MessageNode = { type: ((node as HTMLElement).tagName || 'text').toLowerCase() }
     if(node.nodeValue) {
         json.value = node.nodeValue
     }
     return json
-}
-
-export function createMessage(node: Node) {
-    return Array.from(node.childNodes).map((node) => {
-        var json = convertNodeToJSON(node)
-        if(node.childNodes.length > 0) {
-            json.children = createMessage(node)
-        }
-        return json
-    })
 }
 
 function convertJSONToHTML(json: MessageNode): string {
@@ -33,6 +17,22 @@ function convertJSONToHTML(json: MessageNode): string {
                 .join(''): ''
         }<${nodeType}>`
     }
+}
+
+export interface MessageNode {
+    type: string,
+    value?: string,
+    children?: MessageNode[]
+}
+
+export function createMessage(node: Node) {
+    return Array.from(node.childNodes).map((node) => {
+        var json = convertNodeToJSON(node)
+        if(node.childNodes.length > 0) {
+            json.children = createMessage(node)
+        }
+        return json
+    })
 }
 
 export function messageToHTML(message: MessageNode[]) {
