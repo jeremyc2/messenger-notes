@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { MessageNode } from '../scripts/message-conversion'
-import { getCollection } from '../scripts/collection'
+import { Collection, getCollection } from '../scripts/collection'
 
 function resizeApp() {
   let vh = window.innerHeight * 0.01
@@ -18,6 +18,7 @@ const Notepage: NextPage = () => {
   const [messages, setMessages] = useState<MessageNode[][]>(),
     [collection, setCollection] = useState<string>(),
     [avatar, setAvatar] = useState<string>(),
+    [themeColor, setThemeColor] = useState<string>(),
     router = useRouter(),
     defaultCollection = 'Notes'
 
@@ -36,8 +37,10 @@ const Notepage: NextPage = () => {
     const collectionData = getCollection(tempCollection)
     if(!collectionData) return
 
-    setAvatar(collectionData.icon)
-    setMessages(collectionData.messages)
+    const {icon, messages, color}: Collection = collectionData
+    setAvatar(icon)
+    setMessages(messages)
+    setThemeColor(color)
 
   }, [router.isReady])
 
@@ -59,7 +62,7 @@ const Notepage: NextPage = () => {
       </Head>
       <div className={styles.main}>
         <NavBar collection={collection} avatar={avatar} />
-        <Messages messages={messages} />
+        <Messages themeColor={themeColor} messages={messages} />
         <MessageInput collection={collection} messages={messages} setMessages={setMessages} />
       </div>
     </div>

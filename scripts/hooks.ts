@@ -24,3 +24,9 @@ export function useOutsideTrigger(ref: RefObject<HTMLElement>, cb: Function) {
     }
   }, [ref])
 }
+
+export function useCSSProp({property, value}: {property: string, value: string}, dependencies?: any[]) {
+  useEffect(() => {
+    document.documentElement.style.setProperty(property, value)
+  }, dependencies)
+}
