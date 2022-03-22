@@ -1,16 +1,21 @@
 import { MessageNode } from './message-conversion'
+import { getRandomAvatar, getRandomColor } from './random'
 
 type CollectionMap = [string, string]
 
-interface Collection {
+export interface Collection {
   name: string
   icon?: string
+  color?: string
   latest?: string
   messages?: MessageNode[][]  
 }
 
 export function createCollection(name: string) {
-  localStorage.setItem(name, JSON.stringify({}))
+  localStorage.setItem(name, JSON.stringify({
+    icon: `/animal-avatars/${getRandomAvatar()}1.png`,
+    color: getRandomColor()
+  }))
 }
 
 export function getCollection(name: string) {
@@ -30,9 +35,8 @@ const collections = Object.entries(localStorage)
     })
 }
 
-export function updateCollection(params: Collection) {
-  const {name, ...data} = params
-
+export function updateCollection({name, ...data}: Collection) {
+  data = {...getCollection(name), ...data}
   localStorage.setItem(name, JSON.stringify(data))
 }
 

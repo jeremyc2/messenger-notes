@@ -30,10 +30,9 @@ const NotePage: NextPage = () => {
       </Head>
       <NavBar2 title='Notes' />
       <div className={styles.list}>
-        {collections?.map(({name, latest}, index) => {
+        {collections?.map((collectionData, index) => {
           return <CollectionItem 
-            name={name} 
-            summary={latest} 
+            {...collectionData}
             key={`collection${index}`} />
         })}
       </div>

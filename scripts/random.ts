@@ -9,11 +9,11 @@ const avatars: string[] = [
         "lime", "yellow", "orange"]
 
 export function getRandomAvatar() {
-    const index = Math.random() * avatars.length
+    const index = Math.floor(Math.random() * avatars.length)
     return avatars[index]
 }
 
 export function getRandomColor() {
-    const index = Math.random() * colors.length
+    const index = Math.floor(Math.random() * colors.length)
     return colors[index]
 }
