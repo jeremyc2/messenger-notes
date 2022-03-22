@@ -17,6 +17,7 @@ function resizeApp() {
 const Notepage: NextPage = () => {
   const [messages, setMessages] = useState<MessageNode[][]>(),
     [collection, setCollection] = useState<string>(),
+    [avatar, setAvatar] = useState<string>(),
     router = useRouter(),
     defaultCollection = 'Notes'
 
@@ -35,6 +36,7 @@ const Notepage: NextPage = () => {
     const collectionData = getCollection(tempCollection)
     if(!collectionData) return
 
+    setAvatar(collectionData.icon)
     setMessages(collectionData.messages)
 
   }, [router.isReady])
@@ -56,7 +58,7 @@ const Notepage: NextPage = () => {
         <meta name="theme-color" content="#fff" />
       </Head>
       <div className={styles.main}>
-        <NavBar collection={collection} />
+        <NavBar collection={collection} avatar={avatar} />
         <Messages messages={messages} />
         <MessageInput collection={collection} messages={messages} setMessages={setMessages} />
       </div>

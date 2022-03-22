@@ -4,10 +4,11 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 interface Props {
-    collection?: string,
+    collection?: string
+    avatar?: string
 }
 
-export default function NavBar({ collection }: Props) {
+export default function NavBar({ collection, avatar }: Props) {
     const [menuOpen, setMenuOpen] = useState<boolean>(false)
 
     function toggleMenu() {
@@ -23,7 +24,7 @@ export default function NavBar({ collection }: Props) {
                         </svg>
                     </a>
                 </Link>
-                <img src="/animal-avatars/antelope1.png" alt="" />
+                <img src={avatar} alt="" />
                 <div>{collection || ''}</div>
             </div>
             <button onClick={toggleMenu}>
