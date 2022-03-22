@@ -1,5 +1,6 @@
 import styles from './message-input.module.scss'
 import { MessageNode, createMessage } from '../../scripts/message-conversion'
+import { updateCollection } from '../../scripts/collection'
 import { useEffect, useRef } from 'react'
 
 interface Props {
@@ -51,7 +52,7 @@ export default function MessageInput({ collection, messages = [], setMessages }:
         const newMessage = createMessage(editor.current),
             newMessages = [...messages, newMessage]
             
-        localStorage.setItem(collection, JSON.stringify({latest: text, messages: newMessages}))
+        updateCollection({name: collection, latest: text, messages: newMessages})
         setMessages(newMessages)
         clear()
         focus()

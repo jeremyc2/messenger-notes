@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { MessageNode } from '../scripts/message-conversion'
+import { getCollection } from '../scripts/collection'
 
 function resizeApp() {
   let vh = window.innerHeight * 0.01
@@ -31,13 +32,10 @@ const Notepage: NextPage = () => {
 
     setCollection(tempCollection)
 
-    const localCollection = localStorage.getItem(tempCollection)
-    if(!localCollection) return
+    const collectionData = getCollection(tempCollection)
+    if(!collectionData) return
 
-    var storedCollection = JSON.parse(localCollection)
-    if(storedCollection) {
-      setMessages(storedCollection.messages)
-    }
+    setMessages(collectionData.messages)
 
   }, [router.isReady])
 

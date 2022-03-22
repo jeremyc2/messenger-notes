@@ -1,5 +1,6 @@
 import styles from './collection-menu.module.scss'
 import { useOutsideTrigger } from '../../../scripts/hooks'
+import { removeCollection } from '../../../scripts/collection'
 import { useRouter } from 'next/router'
 import { useRef } from 'react'
 
@@ -17,7 +18,7 @@ export default function CollectionMenu({collection, setOpen}: Props) {
     function deleteCollection() {
         if(!collection) return
 
-        localStorage.removeItem(collection)
+        removeCollection(collection)
         router.push('/')
     }
 

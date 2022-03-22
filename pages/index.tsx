@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import NavBar2 from '../components/NavBar/NavBar2'
 import CollectionItem from '../components/CollectionItem'
+import { getCollections } from '../scripts/collection'
 import { useEffect, useState } from 'react'
 
 interface Collection {
@@ -10,18 +11,11 @@ interface Collection {
   latest: string
 }
 
-type CollectionMap = [string, string]
-
 const NotePage: NextPage = () => {
   const [collections, setCollections] = useState<Collection[]>()
 
   useEffect(() => {
-    const rawCollections = Object.entries(localStorage),
-      collections = rawCollections
-        .filter(collection => collection[0] !== 'ally-supports-cache')
-        .map(([name, data]: CollectionMap) => {
-          return {name, latest: JSON.parse(data).latest}
-        })
+    const collections = getCollections
     setCollections(collections)
   }, [])
 

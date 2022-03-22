@@ -1,42 +1,41 @@
-// TODO implement me
 import { MessageNode } from './message-conversion'
 
 type CollectionMap = [string, string]
 
 interface Collection {
-    name: string
-    icon?: string
-    latest?: string
-    messages?: MessageNode[][]  
+  name: string
+  icon?: string
+  latest?: string
+  messages?: MessageNode[][]  
 }
 
 export function createCollection(name: string) {
-
+  localStorage.setItem(name, JSON.stringify({}))
 }
 
 export function getCollection(name: string) {
-    const collection = localStorage.getItem(name)
-    if(!collection) return
+  const collection = localStorage.getItem(name)
+  if(!collection) return
 
-    return JSON.parse(collection)
+  return JSON.parse(collection)
 }
 
 export function getCollections() {
 const collections = Object.entries(localStorage)
-    return collections
-        .filter(collection => collection[0] !== 'ally-supports-cache')
-        .map(([name, data]: CollectionMap) => {
-          return {name, latest: JSON.parse(data).latest}
-        })
+  return collections
+    .filter(collection => collection[0] !== 'ally-supports-cache')
+    .map(([name, value]: CollectionMap) => {
+      const data = JSON.parse(value)
+      return {name, ...data}
+    })
 }
 
 export function updateCollection(params: Collection) {
-    
-    const newCollection = {}
+  const {name, ...data} = params
 
-    localStorage.setItem(params.name, JSON.stringify(newCollection))
+  localStorage.setItem(name, JSON.stringify(data))
 }
 
-export function deleteCollection(name: string) {
-    localStorage.removeItem(name)
+export function removeCollection(name: string) {
+  localStorage.removeItem(name)
 }
