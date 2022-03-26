@@ -63,7 +63,7 @@ const Notepage: NextPage = () => {
       <div className={styles.main}>
         <NavBar collection={collection} avatar={avatar} />
         <Messages themeColor={themeColor} messages={messages} />
-        <MessageInput collection={collection} messages={messages} setMessages={setMessages} />
+        <MessageInput collection={collection} setMessages={setMessages} />
       </div>
     </div>
   )

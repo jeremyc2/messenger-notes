@@ -5,7 +5,6 @@ import { useEffect, useRef } from 'react'
 
 interface Props {
     collection?: string,
-    messages?: MessageNode[][],
     setMessages: Function
 }
 
@@ -15,7 +14,7 @@ interface ChromeNavigator extends Navigator {
     }
 }
 
-export default function MessageInput({ collection, messages = [], setMessages }: Props) {
+export default function MessageInput({ collection, setMessages }: Props) {
     const editor = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -49,11 +48,14 @@ export default function MessageInput({ collection, messages = [], setMessages }:
         const text = editor.current?.innerText
         if(!text || !/\S/.test(text)) return
 
-        const newMessage = createMessage(editor.current),
-            newMessages = [...messages, newMessage]
+        const newMessage = createMessage(editor.current)
+
+        setMessages((messages: MessageNode[][] = []) => {
+            const newMessages = [...messages, newMessage]
+            updateCollection({name: collection, latest: text, messages: newMessages})
+            setMessages(newMessages)
+        })
             
-        updateCollection({name: collection, latest: text, messages: newMessages})
-        setMessages(newMessages)
         clear()
         focus()
     }
