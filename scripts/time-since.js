@@ -1,4 +1,4 @@
-function getTimeSpan(date, refDate, dateFormats, timeUnits) {
+export default function getTimeSpan(date, refDate, dateFormats, timeUnits) {
   //Date Formats must be be ordered smallest -> largest and must end in a format with ceiling of null
   dateFormats = dateFormats || {
     past: [

@@ -27,6 +27,8 @@ a.item {
     }
     .message { 
         grid-area: 2 / 2 / 3 / 3; 
+        display: flex;
+        justify-content: space-between;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;

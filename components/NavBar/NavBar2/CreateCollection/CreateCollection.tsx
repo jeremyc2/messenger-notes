@@ -17,7 +17,7 @@ export default function CreateCollection() {
         <>
             <label className={styles.label} htmlFor="collection">Collection Name</label>
             <div className={styles.controls}>
-                <input ref={input} autoFocus type="text" name='collection' />
+                <input ref={input} autoFocus autoComplete='off' type="text" name='collection' />
                 <button onClick={create}>GO!</button>
             </div>
         </>

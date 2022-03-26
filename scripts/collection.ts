@@ -5,6 +5,7 @@ type CollectionMap = [string, string]
 
 export interface Collection {
   name: string
+  lastUpdated: number
   icon?: string
   color?: string
   latest?: string
@@ -13,6 +14,7 @@ export interface Collection {
 
 export function createCollection(name: string) {
   localStorage.setItem(name, JSON.stringify({
+    lastUpdated: Date.now(),
     icon: `/animal-avatars/${getRandomAvatar()}1.png`,
     color: getRandomColor()
   }))

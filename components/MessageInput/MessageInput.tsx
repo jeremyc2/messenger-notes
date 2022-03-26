@@ -52,7 +52,7 @@ export default function MessageInput({ collection, setMessages }: Props) {
 
         setMessages((messages: MessageNode[][] = []) => {
             const newMessages = [...messages, newMessage]
-            updateCollection({name: collection, latest: text, messages: newMessages})
+            updateCollection({name: collection, lastUpdated: Date.now(), latest: text, messages: newMessages})
             setMessages(newMessages)
         })
             
