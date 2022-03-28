@@ -1,6 +1,6 @@
 import styles from './collection-item.module.scss'
 import { Collection } from '../../scripts/collection'
-import getTimeSpan from '../../scripts/time-since'
+import ReactTimeAgo from 'react-time-ago'
 import Link from 'next/link'
 
 export default function CollectionItem({ name, lastUpdated, icon, latest: summary }: Collection) {
@@ -10,7 +10,7 @@ export default function CollectionItem({ name, lastUpdated, icon, latest: summar
             <div className={styles.title}>{name}</div>
             <div className={styles.message}>
                 <span>{summary}</span>
-                <span>{getTimeSpan(lastUpdated)}</span>
+                <ReactTimeAgo date={lastUpdated} locale="en-US"/>
             </div>
         </a>
     </Link>
