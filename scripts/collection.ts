@@ -35,6 +35,7 @@ const collections = Object.entries(localStorage)
       const data = JSON.parse(value)
       return {name, ...data}
     })
+    .sort((a, b) => b.lastUpdated - a.lastUpdated)
 }
 
 export function updateCollection({name, ...data}: Collection) {
