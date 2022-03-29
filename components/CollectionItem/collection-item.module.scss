@@ -32,5 +32,10 @@ a.item {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+
+        span {
+            max-width: calc(100% - 12ch);
+            overflow: hidden;
+        }
     }
 }
