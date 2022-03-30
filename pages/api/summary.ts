@@ -4,6 +4,7 @@ import getSummary from '../../scripts/wikipedia'
 
 type Data = {
   status: string
+  summary?: any
 }
 
 export default async function handler(
@@ -16,5 +17,5 @@ export default async function handler(
   }
 
   const summary = await getSummary({topic: req.query.topic as string})
-  res.status(200).json({status: 'success', ...summary})
+  res.status(200).json({status: 'success', summary})
 }
