@@ -1,3 +1,4 @@
+import style from '../styles/beta.module.scss'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import CollectionsSection from '../components/CollectionsSection'
@@ -19,8 +20,10 @@ const NotePage: NextPage = () => {
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#fff" />
       </Head>
-      <CollectionsSection />
-      <NotepageSection />
+      <div className={style.wrapper}>
+        <CollectionsSection />
+        <NotepageSection />
+      </div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import styles from '../styles/messenger.module.scss'
+import styles from './notepage-section.module.scss'
 import NavBar from '../../components/NavBar'
 import Messages from '../../components/Messages'
 import MessageInput from '../../components/MessageInput'

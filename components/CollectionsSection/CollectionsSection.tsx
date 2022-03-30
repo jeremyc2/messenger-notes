@@ -1,4 +1,4 @@
-import styles from '../styles/notepage.module.scss'
+import styles from './collections-section.module.scss'
 import { Collection, getCollections } from '../../scripts/collection'
 import CollectionItem from '../CollectionItem'
 import NavBar2 from '../NavBar/NavBar2'
@@ -12,7 +12,7 @@ export default function CollectionsSection() {
       setCollections(collections)
     }, [])
     return (
-      <>
+      <div>
         <NavBar2 title='Notes' />
         <div className={styles.list}>
             {collections?.map((collectionData, index) => {
@@ -21,6 +21,6 @@ export default function CollectionsSection() {
                 key={`collection${index}`} />
             })}
         </div>
-      </>
+      </div>
     )
 }
