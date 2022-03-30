@@ -22,7 +22,9 @@ function getSummary({topic, ...options}: Props) {
         ...options
     }
     const url = `https://en.wikipedia.org/w/api.php?${buildQuerystring(queryParams)}`
-    return fetch(url).then(res => res.json()).then(json => json.query.pages[0].extract)
+    return fetch(url)
+        .then(res => res.json())
+        .then(json => json.query.pages[0].extract)
 }
 
 export default getSummary
