@@ -23,9 +23,9 @@ export default async function handler(
     return
   }
 
-  if(typeof req.query.exsentences !== 'undefined' && 
-    !Array.isArray(req.query.exsentences)) {
-    options.exsentences = parseInt(req.query.exsentences)
+  if(typeof req.query.sentences !== 'undefined' && 
+    !Array.isArray(req.query.sentences)) {
+    options.exsentences = parseInt(req.query.sentences)
   }
 
   const summary = await getSummary({topic: req.query.topic as string, options})
