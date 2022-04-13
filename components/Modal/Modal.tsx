@@ -8,6 +8,7 @@ interface Props {
     children?: ReactNode
 }
 
+// TODO change to dialog HTML Element with showModal()
 export default function Modal({ show = false, setModalOpen, children }: Props) {
     const [mounted, setMounted] = useState(false)
 

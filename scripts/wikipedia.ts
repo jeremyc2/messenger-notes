@@ -16,7 +16,9 @@ function getSummary({topic, ...options}: Props) {
         prop: 'extracts',
         titles: topic,
         redirects: 1,
+        converttitles: 1,
         formatversion: 2,
+        exsentences: 2,
         exintro: 1,
         explaintext: 1,
         ...options
