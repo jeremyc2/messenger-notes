@@ -9,7 +9,7 @@ function buildQuerystring(params: {}): string {
     }, '').substring(1)
 }
 
-function getSummary({topic, ...options}: Props) {
+function getSummary({topic, options}: Props) {
     const queryParams = {
         action: 'query',
         format: 'json',
