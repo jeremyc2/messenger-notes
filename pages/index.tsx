@@ -1,18 +1,34 @@
-import styles from '../styles/notepage.module.scss'
+import style from '../styles/beta.module.scss'
+import React, { Dispatch, Reducer, useReducer } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import NavBar2 from '../components/NavBar/NavBar2'
-import CollectionItem from '../components/CollectionItem'
-import { Collection, getCollections } from '../scripts/collection'
-import { useEffect, useState } from 'react'
+import CollectionsSection from '../components/CollectionsSection'
+import NotepageSection from '../components/NotepageSection'
+
+interface AppContext {
+  activeCollection: string,
+  dispatch: Dispatch<any>
+}
+
+export const appContext = React.createContext(null! as AppContext)
 
 const NotePage: NextPage = () => {
-  const [collections, setCollections] = useState<Collection[]>()
+  function resizeApp() {
+    let vh = window.innerHeight * 0.01
+    document.documentElement.style.setProperty('--vh', `${vh}px`)
+  }
+  
+  const reducer = (state: {}, {type, value}: {type: string, value: string}) => {
+    if(type === 'loadCollection') {
+      return {...state, activeCollection: value}
+    }
+  }
 
-  useEffect(() => {
-    const collections = getCollections
-    setCollections(collections)
-  }, [])
+  const initialState = {
+    activeCollection: undefined
+  }
+
+  const [state, dispatch] = useReducer<Reducer<any, any>>(reducer, initialState)
 
   return (
     <div>
@@ -23,14 +39,12 @@ const NotePage: NextPage = () => {
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#fff" />
       </Head>
-      <NavBar2 title='Notes' />
-      <div className={styles.list}>
-        {collections?.map((collectionData, index) => {
-          return <CollectionItem 
-            {...collectionData}
-            key={`collection${index}`} />
-        })}
-      </div>
+      <appContext.Provider value={{...state, dispatch}}>
+        <div className={style.wrapper}>
+          <CollectionsSection />
+          <NotepageSection />
+        </div>
+      </appContext.Provider>
     </div>
   )
 }

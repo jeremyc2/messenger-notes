@@ -10,10 +10,10 @@ export default function CollectionsSection() {
     useEffect(() => {
       const collections = getCollections
       setCollections(collections)
-    }, [])
+    },[])
     return (
       <div>
-        <NavBar2 title='Notes' />
+        <NavBar2 />
         <div className={styles.list}>
             {collections?.map((collectionData, index) => {
             return <CollectionItem 

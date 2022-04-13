@@ -1,10 +1,15 @@
 import styles from './collection-item.module.scss'
-import { Collection } from '../../scripts/collection'
 import ReactTimeAgo from 'react-time-ago'
-import Link from 'next/link'
+import { Collection } from '../../scripts/collection'
+import { useContext } from 'react'
+import { appContext } from '../../pages'
 
 export default function CollectionItem({ name, lastUpdated, icon, latest: summary }: Collection) {
-    return <Link href={`/${name}`}>
+    const {dispatch} = useContext(appContext)
+    function navigate() {
+        dispatch({type: 'loadCollection', value: name})
+    }
+    return <div onClick={navigate}>
         <a className={styles.item}>
             <img className={styles.icon} src={icon} alt="" />
             <div className={styles.title}>{name}</div>
@@ -13,5 +18,5 @@ export default function CollectionItem({ name, lastUpdated, icon, latest: summar
                 <ReactTimeAgo date={lastUpdated} locale="en-US"/>
             </div>
         </a>
-    </Link>
+    </div>
 }

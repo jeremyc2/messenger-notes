@@ -4,7 +4,7 @@ import CreateCollection from './CreateCollection'
 import { useState } from 'react'
 
 interface Props {
-    title: string
+    title?: string
 }
 
 export default function NavBar2({ title }: Props) {
@@ -17,7 +17,7 @@ export default function NavBar2({ title }: Props) {
     return (
         <div className={styles.navbar}>
             <div className={styles.title}>
-                {title}
+                {title || ''}
             </div>
             <button onClick={openModal}>
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="var(--text-2)">

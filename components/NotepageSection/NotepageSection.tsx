@@ -4,43 +4,38 @@ import Messages from '../../components/Messages'
 import MessageInput from '../../components/MessageInput'
 import { MessageNode } from '../../scripts/message-conversion'
 import { Collection, getCollection } from '../../scripts/collection'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { appContext } from '../../pages'
 
 export default function NotepageSection() {
     const [messages, setMessages] = useState<MessageNode[][]>(),
-    [collection, setCollection] = useState<string>(),
-    [avatar, setAvatar] = useState<string>(),
-    [themeColor, setThemeColor] = useState<string>(),
-    router = useRouter(),
-    defaultCollection = 'Notes'
+      [collection, setCollection] = useState<string>(),
+      [avatar, setAvatar] = useState<string>(),
+      [themeColor, setThemeColor] = useState<string>(),
+      { activeCollection } = useContext(appContext)
 
     useEffect(() => {
-    if(!router.isReady) return
+      if(!activeCollection) return
 
-    let tempCollection
-    if(router.query.slug) {
-        tempCollection = Array.from(router.query.slug).join(' ')
-    } else {
-        tempCollection = defaultCollection
-    }
+      let tempCollection = activeCollection
 
-    setCollection(tempCollection)
+      setCollection(tempCollection)
 
-    const collectionData = getCollection(tempCollection)
-    if(!collectionData) return
+      const collectionData = getCollection(tempCollection)
+      if(!collectionData) return
 
-    const {icon, messages, color}: Collection = collectionData
-    setAvatar(icon)
-    setMessages(messages)
-    setThemeColor(color)
+      const {icon, messages, color}: Collection = collectionData
+      setAvatar(icon)
+      setMessages(messages)
+      setThemeColor(color)
 
-    }, [router.isReady])
+    }, [activeCollection])
     return (
+      activeCollection?
       <div className={styles.main}>
         <NavBar collection={collection} avatar={avatar} />
         <Messages themeColor={themeColor} messages={messages} />
         <MessageInput collection={collection} setMessages={setMessages} />
-      </div>
+      </div> : null
     )
 }

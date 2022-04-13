@@ -1,8 +1,8 @@
 import styles from './collection-menu.module.scss'
 import { useOutsideTrigger } from '../../../scripts/hooks'
 import { removeCollection } from '../../../scripts/collection'
-import { useRouter } from 'next/router'
-import { useRef } from 'react'
+import { useContext, useRef } from 'react'
+import { appContext } from '../../../pages'
 
 interface Props {
     collection?: string
@@ -11,7 +11,7 @@ interface Props {
 
 export default function CollectionMenu({collection, setOpen}: Props) {
     const menu = useRef<HTMLDivElement>(null),
-        router = useRouter()
+        { dispatch } = useContext(appContext)
 
     useOutsideTrigger(menu, () => setOpen(false))
 
@@ -19,7 +19,7 @@ export default function CollectionMenu({collection, setOpen}: Props) {
         if(!collection) return
 
         removeCollection(collection)
-        router.push('/')
+        dispatch({type: 'loadCollection', value: null})
     }
 
     return (

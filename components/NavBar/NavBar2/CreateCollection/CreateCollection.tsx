@@ -1,17 +1,17 @@
 import styles from './create-collection.module.scss'
-import { useRouter } from 'next/router'
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import { createCollection } from '../../../../scripts/collection'
+import { appContext } from '../../../../pages'
 
 export default function CreateCollection() {
     const input = useRef<HTMLInputElement>(null),
-        router = useRouter()
+        { dispatch } = useContext(appContext)
 
     function create() {
         const name = input.current?.value
         if(!name || name === '') return
         createCollection(name)
-        router.push(`/${input.current.value}`)
+        dispatch({type: 'loadCollection', value: input.current.value})
     }
     function handleKeyUp(e: React.KeyboardEvent) {
         if(e.key === 'Enter') {
