@@ -2,7 +2,7 @@ import styles from './collection-item.module.scss'
 import ReactTimeAgo from 'react-time-ago'
 import { Collection } from '../../scripts/collection'
 import { useContext } from 'react'
-import { appContext } from '../../pages'
+import { appContext } from '../../contexts'
 
 export default function CollectionItem({ name, lastUpdated, icon, latest: summary }: Collection) {
     const {dispatch} = useContext(appContext)

@@ -2,7 +2,7 @@ import styles from './collection-menu.module.scss'
 import { useOutsideTrigger } from '../../../scripts/hooks'
 import { removeCollection } from '../../../scripts/collection'
 import { useContext, useRef } from 'react'
-import { appContext } from '../../../pages'
+import { appContext } from '../../../contexts'
 
 interface Props {
     collection?: string

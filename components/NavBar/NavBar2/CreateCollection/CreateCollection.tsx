@@ -1,18 +1,21 @@
 import styles from './create-collection.module.scss'
 import React, { useContext, useRef } from 'react'
 import { createCollection } from '../../../../scripts/collection'
-import { appContext } from '../../../../pages'
+import { appContext, modalContext } from '../../../../contexts'
 
 export default function CreateCollection() {
     const input = useRef<HTMLInputElement>(null),
-        { dispatch } = useContext(appContext)
+        { dispatch } = useContext(appContext),
+        { setModalOpen } = useContext(modalContext)
 
     function create() {
         const name = input.current?.value
         if(!name || name === '') return
         createCollection(name)
         dispatch({type: 'loadCollection', value: input.current.value})
+        setModalOpen(false)
     }
+
     function handleKeyUp(e: React.KeyboardEvent) {
         if(e.key === 'Enter') {
             create()

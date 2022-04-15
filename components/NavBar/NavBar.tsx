@@ -1,7 +1,7 @@
 import styles from './navbar.module.scss'
 import CollectionMenu from './CollectionMenu'
 import { useContext, useState } from 'react'
-import { appContext } from '../../pages'
+import { appContext } from '../../contexts'
 
 interface Props {
     collection?: string

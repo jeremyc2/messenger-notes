@@ -5,7 +5,7 @@ import MessageInput from '../../components/MessageInput'
 import { MessageNode } from '../../scripts/message-conversion'
 import { Collection, getCollection } from '../../scripts/collection'
 import { useContext, useEffect, useState } from 'react'
-import { appContext } from '../../pages'
+import { appContext } from '../../contexts'
 
 export default function NotepageSection() {
     const [messages, setMessages] = useState<MessageNode[][]>(),

@@ -1,22 +1,12 @@
 import style from '../styles/beta.module.scss'
-import React, { Dispatch, Reducer, useReducer } from 'react'
+import React, { Reducer, useReducer } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import CollectionsSection from '../components/CollectionsSection'
 import NotepageSection from '../components/NotepageSection'
-
-interface AppContext {
-  activeCollection: string,
-  dispatch: Dispatch<any>
-}
-
-export const appContext = React.createContext(null! as AppContext)
+import { appContext } from '../contexts'
 
 const NotePage: NextPage = () => {
-  function resizeApp() {
-    let vh = window.innerHeight * 0.01
-    document.documentElement.style.setProperty('--vh', `${vh}px`)
-  }
   
   const reducer = (state: {}, {type, value}: {type: string, value: string}) => {
     if(type === 'loadCollection') {
