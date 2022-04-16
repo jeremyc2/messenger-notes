@@ -30,8 +30,8 @@ const Notes: NextPage = () => {
         <meta name="theme-color" content="#fff" />
       </Head>
       <appContext.Provider value={{...state, dispatch}}>
-        <div data-collection={state.activeCollection} className={style.wrapper}>
-          <CollectionsSection />
+        <div className={style.wrapper}>
+          <CollectionsSection active={state.activeCollection == null} />
           <NotepageSection />
         </div>
       </appContext.Provider>

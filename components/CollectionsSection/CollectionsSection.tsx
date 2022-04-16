@@ -4,7 +4,11 @@ import CollectionItem from '../CollectionItem'
 import NavBar2 from '../NavBar/NavBar2'
 import { useEffect, useState } from 'react'
 
-export default function CollectionsSection() {
+interface Props {
+  active: boolean
+}
+
+export default function CollectionsSection({ active }: Props) {
     const [collections, setCollections] = useState<Collection[]>()
 
     useEffect(() => {
@@ -12,7 +16,7 @@ export default function CollectionsSection() {
       setCollections(collections)
     },[])
     return (
-      <div>
+      <div className={active? styles.active: styles.inactive}>
         <NavBar2 />
         <div className={styles.list}>
             {collections?.map((collectionData, index) => {
