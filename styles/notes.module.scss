@@ -1,0 +1,14 @@
+.wrapper {
+    display: flex;
+
+    & > * {
+        flex-basis: 50%;
+        flex-grow: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .wrapper[data-collection] {
+        background-color: rgb(50, 0, 0);
+    }
+}

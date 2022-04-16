@@ -1,4 +1,4 @@
-import style from '../styles/beta.module.scss'
+import style from '../styles/notes.module.scss'
 import React, { Reducer, useReducer } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -6,7 +6,7 @@ import CollectionsSection from '../components/CollectionsSection'
 import NotepageSection from '../components/NotepageSection'
 import { appContext } from '../contexts'
 
-const NotePage: NextPage = () => {
+const Notes: NextPage = () => {
   
   const reducer = (state: {}, {type, value}: {type: string, value: string}) => {
     if(type === 'loadCollection') {
@@ -30,7 +30,7 @@ const NotePage: NextPage = () => {
         <meta name="theme-color" content="#fff" />
       </Head>
       <appContext.Provider value={{...state, dispatch}}>
-        <div className={style.wrapper}>
+        <div data-collection={state.activeCollection} className={style.wrapper}>
           <CollectionsSection />
           <NotepageSection />
         </div>
@@ -39,4 +39,4 @@ const NotePage: NextPage = () => {
   )
 }
 
-export default NotePage
+export default Notes
